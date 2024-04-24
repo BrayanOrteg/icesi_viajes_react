@@ -1,0 +1,114 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./assets/background_login.jpg);
+    background-size: cover;
+    background-position: center;
+    
+  }
+
+.container{
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 950px;
+    height: 550px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.welcome{
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #38AC91;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.userLogin {
+    grid-column: 2;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}   
+  
+.whiteText{
+    align-self: center;
+    justify-self: center;
+    color: white;
+    font-family: 'Rubik';
+    font-size: 15px;
+}
+
+#welcomeText{
+    font-family: 'Rubik';
+    font-size: 34px;
+}
+
+.loginInput{
+    font-family: 'Rubik';
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+
+  h2 {
+    font-family: 'Rubik';
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    font-family: 'Rubik';
+  }
+  
+  
+  button {
+    font-family: 'Rubik';
+    margin-top: 10px;
+    display: flex;
+    background-color: #38AC91;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button:hover {
+    background: #1c9478;
+  }
+  
+
+ 
