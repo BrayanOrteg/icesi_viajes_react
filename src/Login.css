@@ -27,8 +27,8 @@ html, body {
 
 .welcome{
     grid-column: 1;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 10% 90%;
     align-items: center;
     justify-content: center;
     background-color: #38AC91;
@@ -36,19 +36,16 @@ html, body {
     width: 100%;
 }
 
-.userLogin {
-    grid-column: 2;
-    width: 100%;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}   
+.textWelcomeContainer{
+  grid-row: 2;
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
   
+}
+
 .whiteText{
+    grid-row: 2;
     align-self: center;
     justify-self: center;
     color: white;
@@ -61,6 +58,27 @@ html, body {
     font-size: 34px;
 }
 
+
+.logoApplication{
+  grid-row: 1;
+  width: 200px;
+  padding-top: 20px;
+}
+ 
+
+.userLogin {
+    grid-column: 2;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}   
+
+
 .loginInput{
     font-family: 'Rubik';
     padding: 8px;
@@ -69,6 +87,7 @@ html, body {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+
 
 
   h2 {

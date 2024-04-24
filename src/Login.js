@@ -25,13 +25,18 @@ function Login({setUser}) {
         <body>
             <div className='container'>
                 <div className='welcome'>
-                    <img src={logo}/>
-                    <h1 className='whiteText' id='welcomeText'>
-                    Bienvenido!
-                    </h1>
-                    <p className='whiteText'>
-                        Por favor ingresa tus credenciales para continuar
-                    </p>
+
+                    <img src={logo} className='logoApplication'/>
+                    
+                    <div className='textWelcomeContainer'>
+                        <h1 className='whiteText' id='welcomeText'>
+                        Bienvenido!
+                        </h1>
+                        <p className='whiteText'>
+                            Por favor ingresa tus credenciales para continuar
+                        </p>
+                    </div>
+   
                 </div>
                 <div className="userLogin">
                     <h2>Inicio de Sesión</h2>
