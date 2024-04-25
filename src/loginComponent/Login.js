@@ -20,10 +20,10 @@ function Login({setUser}) {
   };
 
   return (
-    <html>
+    <html className='login-html-body'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
-        <body>
-            <div className='container'>
+        <body className='login-html-body'>
+            <div className='container-login'>
                 <div className='welcome'>
 
                     <img src={logo} className='logoApplication'/>

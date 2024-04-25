@@ -1,6 +1,6 @@
 import './App.css';
-import Login from './Login';
-import Home from './Home';
+import Login from './loginComponent/Login';
+import Home from './homeComponent/Home';
 import { useState } from 'react';
 
 function App() {
@@ -9,11 +9,11 @@ function App() {
   return (
     <div>
 
-    {
-      !user.length > 0
-      ?<Login setUser = {setUser} />
-      :<Home user = {user} setUser = {setUser} />
-    }
+    {!user.length > 0 ? (
+      <Login setUser={setUser} />
+    ) : (
+      <Home user={user} setUser={setUser} />
+    )}
     
   </div>
   );
