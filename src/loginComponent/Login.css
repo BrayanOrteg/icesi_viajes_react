@@ -7,13 +7,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(./assets/background_login.jpg);
+    background-color: #EBF5F2;
     background-size: cover;
     background-position: center;
     
   }
 
+.rectangle-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 840px;
+    background-color: rgba(85, 184, 161, 0.30); 
+    z-index: 1; 
+  }
+
+.circle-login-1{
+  position: fixed;
+  top: 0%;
+  right: -145px; 
+  transform: translateY(-40%);
+  width: 535px; 
+  height: 535px; 
+  background-color: #DA5A66;
+  border-radius: 50%;
+}
+
+.circle-login-2{
+  position: fixed;
+  top: 0%;
+  right: 1410px; 
+  transform: translateY(130%);
+  width: 535px; 
+  height: 535px; 
+  background-color: #FFB90B;
+  border-radius: 50%;
+}
+
 .container-login{
+    z-index: 2;
     align-self: center;
     justify-self: center;
     display: grid;

@@ -13,14 +13,14 @@ function Home({user, setUser}){
 
     return (
         <html className='home-html-body'>
+          <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
           <body className='home-html-body'>
 
-            <div className="container-home">
-              <h1>Bienvenido</h1>
-              <h2>{user}</h2>
-
               <button type="submit" onClick={handleLogout} >Cerrar Sesión</button>
-            </div>
+
+
+              <div className='circle-home'> </div>
+    
           </body>
         </html>
         

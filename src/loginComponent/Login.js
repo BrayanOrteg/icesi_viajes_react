@@ -23,7 +23,14 @@ function Login({setUser}) {
     <html className='login-html-body'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <body className='login-html-body'>
+
+
+            <div className='circle-login-1'></div>
+            <div className='circle-login-2'></div>
+            <div className='rectangle-login'></div>
+
             <div className='container-login'>
+
                 <div className='welcome'>
 
                     <img src={logo} className='logoApplication'/>
