@@ -14,10 +14,24 @@
 .circle-home{
   position: fixed;
   top: 0%;
-  right: -180px; 
-  transform: translateY(135%);
+  right: -15%; 
+  transform: translateY(60%);
   width: 520px; 
   height: 520px; 
   background-color: #DA5A66;
-  border-radius: 49%;
+  border-radius: 50%;
+}
+
+@media (max-width: 1920px) {
+  .circle-home{
+    position: fixed;
+    top: 0%;
+    right: -15%; 
+    transform: translateY(60%);
+    width: 520px; 
+    height: 520px; 
+    background-color: #DA5A66;
+    border-radius: 50%;
+  }
+
 }
