@@ -18,7 +18,7 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 840px;
+    width: 45%;
     background-color: rgba(85, 184, 161, 0.30); 
     z-index: 1; 
   }
@@ -26,7 +26,7 @@
 .circle-login-1{
   position: fixed;
   top: 0%;
-  right: -145px; 
+  right: -10%; 
   transform: translateY(-40%);
   width: 535px; 
   height: 535px; 
@@ -37,7 +37,7 @@
 .circle-login-2{
   position: fixed;
   top: 0%;
-  right: 1410px; 
+  right: 80%; 
   transform: translateY(130%);
   width: 535px; 
   height: 535px; 
