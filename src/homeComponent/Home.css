@@ -13,25 +13,11 @@
 
 .circle-home{
   position: fixed;
-  top: 0%;
-  right: -15%; 
-  transform: translateY(60%);
+  bottom: 0;
+  right: -10vw; 
+  transform: translateY(30vh);
   width: 520px; 
   height: 520px; 
   background-color: #DA5A66;
   border-radius: 50%;
-}
-
-@media (max-width: 1920px) {
-  .circle-home{
-    position: fixed;
-    top: 0%;
-    right: -15%; 
-    transform: translateY(60%);
-    width: 520px; 
-    height: 520px; 
-    background-color: #DA5A66;
-    border-radius: 50%;
-  }
-
 }
