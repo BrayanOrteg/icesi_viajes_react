@@ -95,8 +95,10 @@
 
 .logoApplication{
   grid-row: 1;
-  width: 200px;
-  padding-top: 20px;
+  width: 10vw;
+  padding: 20px;
+  left: 0;
+ justify-self: start; 
 }
  
 
@@ -122,9 +124,12 @@
     border-radius: 10px;
 }
 
+.error-text{
+  font-family: 'Rubik';
+  color: #ee3333;
+}
 
-
-  h2 {
+  h2 , h4 {
     font-family: 'Rubik';
     text-align: center;
   }

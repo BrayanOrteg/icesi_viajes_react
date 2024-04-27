@@ -56,7 +56,7 @@ function Login({setUser}) {
                        
                         <button type="submit">Iniciar Sesión</button>
                     </form>
-                    {error && <p>Se deben llenar todos los campos</p>}
+                    {error && <h4 className='error-text'> ¡Se deben llenar todos los campos!</h4>}
                 </div>
             </div>
             
