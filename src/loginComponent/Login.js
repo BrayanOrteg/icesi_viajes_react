@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import logo from './assets/logo_icesi.png';
+import { request, setAuthHeader} from '../axios_helper';
 
 function Login({setUser}) {
   const [userName, setUserName] = useState('');
@@ -14,6 +15,26 @@ function Login({setUser}) {
         setError(true)
         return
     }
+
+
+    request(
+        "POST",
+        "api/v1/users/login",
+        {
+            login: userName,
+            password: password
+        }).then(
+        (response) => {
+            setAuthHeader(response.data.token);
+            
+        }).catch(
+        (error) => {
+            setError(true)
+            return
+        }
+    );
+
+
     setError(false)
 
     setUser([userName])

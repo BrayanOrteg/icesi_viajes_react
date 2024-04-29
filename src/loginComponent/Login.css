@@ -45,7 +45,7 @@
   border-radius: 50%;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1920px) {
   .rectangle-login {
     position: fixed;
     top: 0;
