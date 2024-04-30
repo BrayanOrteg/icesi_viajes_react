@@ -31,8 +31,7 @@ export default class Login extends React.Component {
             this.setState({error: "false"});
             this.state.onLogin(e, this.state.userName, this.state.password);
         }
-        
-    };
+    }
 
     render(){
 
@@ -80,7 +79,6 @@ export default class Login extends React.Component {
                 </body>
                 
             </html>
-            
 
             
         );

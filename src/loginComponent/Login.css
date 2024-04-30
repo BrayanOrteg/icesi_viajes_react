@@ -14,20 +14,21 @@
   }
 
 .rectangle-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 45%;
-    background-color: rgba(85, 184, 161, 0.30); 
-    z-index: 1; 
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 43vw;
+  background-color: rgba(85, 184, 161, 0.30); 
+  z-index: 1; 
+
+}
 
 .circle-login-1{
   position: fixed;
-  top: 0%;
-  right: -10%; 
-  transform: translateY(-40%);
+  top: 0;
+  right: -10vw; 
+  transform: translateY(-35vh);
   width: 535px; 
   height: 535px; 
   background-color: #DA5A66;
@@ -36,49 +37,14 @@
 
 .circle-login-2{
   position: fixed;
-  top: 0%;
-  right: 80%; 
-  transform: translateY(130%);
-  width: 535px; 
-  height: 535px; 
-  background-color: #FFB90B;
-  border-radius: 50%;
-}
-
-@media (max-width: 1920px) {
-  .rectangle-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 43%;
-    background-color: rgba(85, 184, 161, 0.30); 
-    z-index: 1; 
-
-  }
-
-.circle-login-1{
-  position: fixed;
-  top: 0%;
-  right: -10%; 
-  transform: translateY(-40%);
-  width: 535px; 
-  height: 535px; 
-  background-color: #DA5A66;
-  border-radius: 50%;
-}
-
-.circle-login-2{
-  position: fixed;
-  top: 0%;
-  right: 70%; 
-  transform: translateY(70%);
+  bottom: 0;
+  left: -10vw; 
+  transform: translateY(35vh);
   width: 535px; 
   height: 535px; 
   background-color: #FFB90B;
   border-radius: 50%;
 
-}
 }
 
 .container-login{
@@ -87,8 +53,8 @@
     justify-self: center;
     display: grid;
     grid-template-columns: 40% 60%;
-    width: 950px;
-    height: 550px;
+    width: 72%;
+    height: 85%;
     background-color: white;
     border-radius: 10px;
 }
@@ -129,8 +95,10 @@
 
 .logoApplication{
   grid-row: 1;
-  width: 200px;
-  padding-top: 20px;
+  width: 10vw;
+  padding: 20px;
+  left: 0;
+ justify-self: start; 
 }
  
 
@@ -156,9 +124,12 @@
     border-radius: 10px;
 }
 
+.error-text{
+  font-family: 'Rubik';
+  color: #ee3333;
+}
 
-
-  h2 {
+  h2 , h4 {
     font-family: 'Rubik';
     text-align: center;
   }
