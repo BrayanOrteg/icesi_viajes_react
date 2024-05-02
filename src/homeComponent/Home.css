@@ -24,6 +24,7 @@
   height: 520px; 
   background-color: #DA5A66;
   border-radius: 50%;
+  z-index: 0;
 }
 
 .options-home{
