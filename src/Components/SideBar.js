@@ -1,11 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -16,26 +13,13 @@ import PeopleIcon from '@mui/icons-material/People';
 import BadgeIcon from '@mui/icons-material/Badge';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import Logo from '../homeComponent/assets/logo_icesi.png';
+import Logo from '../Commons/logo_icesi.png'
 
 const drawerWidth = 240;
 
 export default function SideBar() {
     return (
         <Box sx={{ display: 'flex', zIndex: 1, color: 'white' }}>
-        <CssBaseline />
-        <AppBar
-            position="fixed"
-            sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, 
-                    backgroundColor: '#55B8A1', boxShadow:"none"}}
-        >
-            <Toolbar>
-                <Typography variant="h6" noWrap component="div">
-                    Opciones
-                </Typography>
-            </Toolbar>
-            <Divider />
-        </AppBar>
         <Drawer
             sx={{
             width: drawerWidth,

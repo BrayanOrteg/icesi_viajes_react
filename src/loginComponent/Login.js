@@ -72,7 +72,7 @@ export default class Login extends React.Component {
                             
                                 <button type="submit">Iniciar Sesión</button>   
                             </form>
-                            {this.state.error && <h4 className='error-text'> ¡Usuario no registrado!</h4>}
+                            {/**this.state.error && <h4 className='error-text'> ¡Usuario no registrado!</h4>*/}
                         </div>
                     </div>
                     

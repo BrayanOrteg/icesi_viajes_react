@@ -1,10 +1,9 @@
 import React from 'react';
 import './Home.css';
-import destinationsImage from './assets/Book.png';
-import userImage from './assets/User.png';
-import analysisImage from './assets/Analyze.png';
-import addBookingImage from './assets/Add.png';
 import SideBar from '../Components/SideBar';
+import TopBar from '../Components/TopBar';
+import UserCard from '../Components/UserCard';
+import MediaCover from '../Components/MediaCover';
 
 
 export default class Home extends React.Component {
@@ -25,10 +24,12 @@ export default class Home extends React.Component {
     return (
         <html className='home-html-body'>
           <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
+          <TopBar></TopBar>
+          <SideBar sx></SideBar>
           <body className='home-html-body'>
+            <UserCard userHeight={100} userWidth={100}></UserCard>
+            <MediaCover></MediaCover>
               <button type="submit" className='logout' onClick={this.onLogout} >Cerrar Sesión</button>
-
-              <SideBar sx></SideBar>
               
               <div className='circle-home'> </div>
           </body>
