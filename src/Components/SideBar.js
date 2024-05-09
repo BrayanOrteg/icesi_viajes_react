@@ -17,7 +17,8 @@ import Logo from '../Commons/logo_icesi.png'
 
 const drawerWidth = 240;
 
-export default function SideBar() {
+export default function SideBar(props) {
+    
     return (
         <Box sx={{ display: 'flex', zIndex: 1, color: 'white' }}>
         <Drawer
@@ -53,7 +54,7 @@ export default function SideBar() {
                     </ListItemButton>
                 </ListItem>
                 <ListItem style={{paddingTop:"10%"}}>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => props.clientsClick()}>
                         <ListItemIcon>
                             <PeopleIcon sx={{color:"white"}}/>
                         </ListItemIcon>

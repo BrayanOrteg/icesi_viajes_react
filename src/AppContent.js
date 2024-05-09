@@ -2,12 +2,14 @@ import * as React from 'react';
 import './App.css';
 import Login from './loginComponent/Login';
 import Home from './homeComponent/Home';
+import Clients from './clientsComponent/Clients';
 import { request, setAuthHeader} from './axios_helper';
 
 export default class AppContent extends React.Component {
 
     constructor(props) {
         super(props);
+        setAuthHeader(null);
         this.state = {
             componentToShow: "loginPage"
         }
@@ -19,6 +21,11 @@ export default class AppContent extends React.Component {
 
     logout = () => {
         this.setState({componentToShow: "loginPage"})
+        setAuthHeader(null);
+    };
+
+    clients = () => {
+        this.setState({componentToShow: "clientsList"})
     };
 
     onLogin = (event, userName, password) => {
@@ -31,6 +38,7 @@ export default class AppContent extends React.Component {
                 password: password
             }).then(
             (response) => {
+                setAuthHeader(response.data.token);
                 this.setState({componentToShow: "home"});
             }).catch(
             (error) => {
@@ -44,7 +52,8 @@ export default class AppContent extends React.Component {
         return (
           <>
             {(this.state.componentToShow === "loginPage" || this.state.componentToShow === "homeError") && <Login onLogin={this.onLogin} /> }
-            {this.state.componentToShow === "home" && <Home logout={this.logout}  />}
+            {this.state.componentToShow === "home" && <Home logout={this.logout} clients={this.clients}  />}
+            {this.state.componentToShow === "clientsList" && <Clients/>}
           </>
         );
     };

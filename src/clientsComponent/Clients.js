@@ -1,9 +1,11 @@
 import React from 'react';
-import './Home.css';
+import './Clients.css';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import UserCard from '../Components/UserCard';
 import MediaCover from '../Components/MediaCover';
+import ClientService from '../service/ClientService';
+import ClientsTable from './ClientsTable';
 
 
 export default class Home extends React.Component {
@@ -13,10 +15,19 @@ export default class Home extends React.Component {
       this.state = {
         logout: props.logout,
         clients: props.clients,
+        clients:[]
       };
 
     this.clientsClick = this.clientsClick.bind(this);
   };
+
+  componentDidMount(){
+    ClientService.getClients().then((response) => {
+        this.setState({clients:response})
+    });
+
+    console.log(this.clients)
+  }
 
   onLogout = () => {
     this.state.logout();
@@ -33,12 +44,11 @@ export default class Home extends React.Component {
           <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
           <TopBar></TopBar>
           <SideBar clientsClick={this.clientsClick}/>
-          <body className='home-html-body'>
-            <UserCard userHeight={100} userWidth={100}></UserCard>
-            <MediaCover></MediaCover>
-              <button type="submit" className='logout' onClick={this.onLogout} >Cerrar Sesión</button>
+          <body className='clients-html-body'>
+
+            <ClientsTable clients={this.clients}/>
               
-              <div className='circle-home'> </div>
+            <div className='circle-clients'> </div>
           </body>
         </html>
         
