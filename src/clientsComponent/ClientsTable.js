@@ -31,7 +31,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
+if (Array.isArray(clients)) {
+  console.log("SIIIIIIIIIIIIIIIIIIII")
+}else{
+  console.log("NOOOOOOOOOOOOOOOOOOOO")
+  console.log(Object.values(clients))
+}
   return (
     <TableContainer className='clients-table-container'  component={Paper}>
       <Table className='clients-table'  aria-label="customized table">
@@ -42,14 +47,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {
-            clients.map((client) => 
-              <StyledTableRow key={client.name}>
-                <StyledTableCell align="right">{client.name}</StyledTableCell>
-                <StyledTableCell align="right">{client.sex}</StyledTableCell>
-              </StyledTableRow>
-            )
-          }
+        {
+        
+        
+        Object.values(clients)[0].map((client) => (
+            <StyledTableRow key={client.id}>
+              <StyledTableCell align="right">{client.name}</StyledTableCell>
+              <StyledTableCell align="right">{client.sex}</StyledTableCell>
+            </StyledTableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

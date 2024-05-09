@@ -8,14 +8,14 @@ import ClientService from '../service/ClientService';
 import ClientsTable from './ClientsTable';
 
 
-export default class Home extends React.Component {
+export default class Clients extends React.Component {
 
   constructor(props) {
       super(props);
       this.state = {
         logout: props.logout,
         clients: props.clients,
-        clients:[]
+        clientList:[]
       };
 
     this.clientsClick = this.clientsClick.bind(this);
@@ -23,10 +23,10 @@ export default class Home extends React.Component {
 
   componentDidMount(){
     ClientService.getClients().then((response) => {
-        this.setState({clients:response})
+        this.setState({clientList:response})
     });
 
-    console.log(this.clients)
+    console.log(this.clientList)
   }
 
   onLogout = () => {
@@ -46,7 +46,7 @@ export default class Home extends React.Component {
           <SideBar clientsClick={this.clientsClick}/>
           <body className='clients-html-body'>
 
-            <ClientsTable clients={this.clients}/>
+            <ClientsTable clients={this.state.clientList}/>
               
             <div className='circle-clients'> </div>
           </body>
