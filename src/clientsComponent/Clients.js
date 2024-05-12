@@ -6,6 +6,7 @@ import UserCard from '../Components/UserCard';
 import MediaCover from '../Components/MediaCover';
 import ClientService from '../service/ClientService';
 import ClientsTable from './ClientsTable';
+import UserList from '../Components/UserList';
 
 
 export default class Clients extends React.Component {
@@ -46,7 +47,9 @@ export default class Clients extends React.Component {
           <SideBar clientsClick={this.clientsClick}/>
           <body className='clients-html-body'>
 
-            <ClientsTable clients={this.state.clientList}/>
+            {/*<ClientsTable clients={this.state.clientList}/>*/}
+
+            <UserList clients={this.state.clientList}></UserList>
               
             <div className='circle-clients'> </div>
           </body>

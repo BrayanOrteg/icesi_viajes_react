@@ -14,7 +14,7 @@ export default function CustomizedTables(clients) {
   
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#46ad95',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -31,29 +31,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-if (Array.isArray(clients)) {
-  console.log("SIIIIIIIIIIIIIIIIIIII")
-}else{
-  console.log("NOOOOOOOOOOOOOOOOOOOO")
-  console.log(Object.values(clients))
-}
+
   return (
-    <TableContainer className='clients-table-container'  component={Paper}>
-      <Table className='clients-table'  aria-label="customized table">
+    <TableContainer component={Paper} sx={{
+      height: '70vh',
+      width: '80vh',
+      zIndex: 1,
+      width:1000
+      }}>
+      <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="right">Name</StyledTableCell>
-            <StyledTableCell align="right">Sex</StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Sex</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-        {
-        
-        
+        {   
         Object.values(clients)[0].map((client) => (
             <StyledTableRow key={client.id}>
-              <StyledTableCell align="right">{client.name}</StyledTableCell>
-              <StyledTableCell align="right">{client.sex}</StyledTableCell>
+              <StyledTableCell>{client.name}</StyledTableCell>
+              <StyledTableCell>{client.sex}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

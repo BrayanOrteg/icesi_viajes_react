@@ -84,14 +84,3 @@
     font-family: 'Rubik';
     font-size: 15px;
   }
-
-.clients-table{
-    height: 50vh;
-    z-index: 1;
-}
-
-.clients-table-container{
-    height: 50vh;
-    width: 80vh;
-    z-index: 1;
-}

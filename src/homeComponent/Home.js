@@ -4,6 +4,7 @@ import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import UserCard from '../Components/UserCard';
 import MediaCover from '../Components/MediaCover';
+import ClientService from '../service/ClientService';
 
 
 export default class Home extends React.Component {
@@ -34,7 +35,6 @@ export default class Home extends React.Component {
           <TopBar></TopBar>
           <SideBar clientsClick={this.clientsClick}/>
           <body className='home-html-body'>
-            <UserCard userHeight={100} userWidth={100}></UserCard>
             <MediaCover></MediaCover>
               <button type="submit" className='logout' onClick={this.onLogout} >Cerrar Sesión</button>
               
