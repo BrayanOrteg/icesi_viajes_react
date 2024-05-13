@@ -14,8 +14,6 @@ export default class Clients extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        logout: props.logout,
-        clients: props.clients,
         clientList:[]
       };
 
@@ -30,9 +28,6 @@ export default class Clients extends React.Component {
     console.log(this.clientList)
   }
 
-  onLogout = () => {
-    this.state.logout();
-  };
 
   clientsClick = () => {
     this.state.clients();

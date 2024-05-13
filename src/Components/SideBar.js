@@ -14,11 +14,14 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import Logo from '../Commons/logo_icesi.png'
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-export default function SideBar(props) {
+export default function SideBar() {
     
+    const navigate = useNavigate();
+
     return (
         <Box sx={{ display: 'flex', zIndex: 1, color: 'white' }}>
         <Drawer
@@ -54,7 +57,7 @@ export default function SideBar(props) {
                     </ListItemButton>
                 </ListItem>
                 <ListItem style={{paddingTop:"10%"}}>
-                    <ListItemButton onClick={() => props.clientsClick()}>
+                    <ListItemButton onClick={() => navigate('/clients')}>
                         <ListItemIcon>
                             <PeopleIcon sx={{color:"white"}}/>
                         </ListItemIcon>

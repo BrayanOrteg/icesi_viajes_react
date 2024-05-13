@@ -3,66 +3,36 @@ import './App.css';
 import Login from './loginComponent/Login';
 import Home from './homeComponent/Home';
 import Clients from './clientsComponent/Clients';
-import { request, setAuthHeader} from './axios_helper';
+import { useState } from 'react';
 
-import { jwtDecode } from 'jwt-decode';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-export default class AppContent extends React.Component {
+export function App() {
 
+    const [role, setRole] = useState('');
 
-    constructor(props) {
-        super(props);
-        setAuthHeader(null);
-        this.state = {
-            componentToShow: "loginPage"
-        }
+    const onRole = (inputRole) => {
+
+        setRole(inputRole)
+        console.log(inputRole)
     };
 
-    login = () => {
-        this.setState({componentToShow: "home"})
-    };
+    return (
+        <>
+        <BrowserRouter>
+            <Routes>
 
-    logout = () => {
-        this.setState({componentToShow: "loginPage"})
-        setAuthHeader(null);
-    };
+                <Route path="/" element={<Login role={onRole} />} />
 
-    clients = () => {
-        this.setState({componentToShow: "clientsList"})
-    };
+                <Route exact path="/home" element={role === "ADMIN" ? (<Home/>) : (<Navigate replace to={"/"} />)}/>
 
-    onLogin = (event, userName, password) => {
-        event.preventDefault();
-        request(
-            "POST",
-            "api/v1/users/login",
-            {
-                login: userName,
-                password: password
-            }).then(
-            (response) => {
-                setAuthHeader(response.data.token);
-                this.setState({componentToShow: "home"});
-                const decoded = jwtDecode(response.data.token);
-                this.setState({role: decoded.role})
-                console.log(decoded);
-            }).catch(
-            (error) => {
-                setAuthHeader(null);
-                this.setState({componentToShow: "homeError"});
-            }
-        );
-    };
+                <Route exact path="/clients" element={role === "ADMIN" ? (<Clients/>) : (<Navigate replace to={"/"} />)}/>
 
-    render() {
-        return (
-          <>
-            {(this.state.componentToShow === "loginPage" || this.state.componentToShow === "homeError") && <Login onLogin={this.onLogin} /> }
-            {this.state.componentToShow === "home"  && this.state.role === "ADMIN" && <Home logout={this.logout} clients={this.clients}  />}
-            {this.state.componentToShow === "clientsList" && <Clients/>}
-          </>
-        );
-    };
-  
-  
+            </Routes>
+        </BrowserRouter>
+        </>
+    );
+
 }
+
+export default App;

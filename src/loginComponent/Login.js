@@ -2,38 +2,46 @@ import React, { useState } from 'react';
 import './Login.css';
 import logo from './assets/logo_icesi.png';
 import { request, setAuthHeader} from '../axios_helper';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
-export default class Login extends React.Component {
+export default function Login({role}) {
 
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            userName: "",
-            password: "",
-            onLogin: props.onLogin,
-            error: false,
-        };
-    };
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
 
-    onChangeHandler = (event) => {
-        let name = event.target.name;
-        let value = event.target.value;
-        this.setState({[name] : value});
-    };
-
-    onSubmitLogin = (e) => {
-
-        if (this.state.userName === "" || this.state.password === ""){
-            this.setState({error: "true"});
-        }else{
-            this.setState({error: "false"});
-            this.state.onLogin(e, this.state.userName, this.state.password);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (userName === "" || password === ""){
+            return
         }
-    }
+        onLogin(e, userName, password);
+    };
 
-    render(){
+
+    const onLogin = (event, userName, password) => {
+        request(
+            "POST",
+            "api/v1/users/login",
+            {
+                login: userName,
+                password: password
+            }).then(
+            (response) => {
+
+                setAuthHeader(response.data.token);
+                const decoded = jwtDecode(response.data.token);
+                role(decoded.role)
+                navigate('/home')
+
+            }).catch(
+            (error) => {
+                setAuthHeader(null);
+            }
+        );
+    };
 
         return (
             <html className='login-html-body'>
@@ -63,12 +71,12 @@ export default class Login extends React.Component {
                         </div>
                         <div className="userLogin">
                             <h2>Inicio de Sesión</h2>
-                            <form id= "login" onSubmit={this.onSubmitLogin}>
+                            <form id= "login" onSubmit={handleSubmit}>
                         
-                                <input className='loginInput' type="text" placeholder='Usuario' name="userName" onChange={this.onChangeHandler} />
+                                <input className='loginInput' type="text" placeholder='Usuario' name="userName" onChange={(e) => setUserName(e.target.value)} />
                                 
                             
-                                <input className='loginInput' type="password" placeholder='Contraseña' name="password" onChange={this.onChangeHandler}/>
+                                <input className='loginInput' type="password" placeholder='Contraseña' name="password" onChange={(e) => setPassword(e.target.value)}/>
                             
                                 <button type="submit">Iniciar Sesión</button>   
                             </form>
@@ -82,6 +90,5 @@ export default class Login extends React.Component {
 
             
         );
-    }
 }
 
