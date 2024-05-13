@@ -1,2 +1,0 @@
-npm i @mui/styles --force
-npm install @mui/joy @emotion/react @emotion/styled --force

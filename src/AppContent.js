@@ -5,7 +5,10 @@ import Home from './homeComponent/Home';
 import Clients from './clientsComponent/Clients';
 import { request, setAuthHeader} from './axios_helper';
 
+import { jwtDecode } from 'jwt-decode';
+
 export default class AppContent extends React.Component {
+
 
     constructor(props) {
         super(props);
@@ -40,6 +43,9 @@ export default class AppContent extends React.Component {
             (response) => {
                 setAuthHeader(response.data.token);
                 this.setState({componentToShow: "home"});
+                const decoded = jwtDecode(response.data.token);
+                this.setState({role: decoded.role})
+                console.log(decoded);
             }).catch(
             (error) => {
                 setAuthHeader(null);
@@ -52,7 +58,7 @@ export default class AppContent extends React.Component {
         return (
           <>
             {(this.state.componentToShow === "loginPage" || this.state.componentToShow === "homeError") && <Login onLogin={this.onLogin} /> }
-            {this.state.componentToShow === "home" && <Home logout={this.logout} clients={this.clients}  />}
+            {this.state.componentToShow === "home"  && this.state.role === "ADMIN" && <Home logout={this.logout} clients={this.clients}  />}
             {this.state.componentToShow === "clientsList" && <Clients/>}
           </>
         );
