@@ -10,24 +10,30 @@ import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
-    padding: theme.spacing(2),
-    maxWidth: 400,
+    Width: '100%',
+    height:'10vh',
     color: theme.palette.text.primary,
   }));
 
 const  UserCard = ({userHeight, userWidth, client}) => {
 
+    const navigate = useNavigate();
+
     return (
-        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3}}>
             <StyledPaper
                 sx={{
                 my: 1,
                 mx: 'auto',
                 p: 2,
+            
                 }}
             >
                 <Grid container wrap="nowrap" spacing={2} alignItems="center">
@@ -47,7 +53,10 @@ const  UserCard = ({userHeight, userWidth, client}) => {
                             color: "white",
                             backgroundColor:'#46ad95'
                           }
-                        }}>
+                        }} onClick={() => navigate('/client',{
+                            state: {
+                              clientObj: client,
+                            }})}>
                         <RemoveRedEyeIcon/>
                     </Button>
                 </Grid>

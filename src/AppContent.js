@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import Login from './loginComponent/Login';
 import Home from './homeComponent/Home';
+import Client from './clientComponent/Client';
 import Clients from './clientsComponent/Clients';
 import { useState } from 'react';
 
@@ -26,7 +27,10 @@ export function App() {
 
                 <Route exact path="/home" element={role === "ADMIN" ? (<Home/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/clients" element={role === "ADMIN" ? (<Clients/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/clients" element={role === "ADMIN" ? (<Clients/>) : (<Navigate replace to={"/"} />)} />
+
+                <Route exact path="/client" element={role === "ADMIN" ? (<Client/>) : (<Navigate replace to={"/"} />)}/>
+
 
             </Routes>
         </BrowserRouter>

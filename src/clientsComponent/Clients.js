@@ -5,52 +5,36 @@ import TopBar from '../Components/TopBar';
 import UserCard from '../Components/UserCard';
 import MediaCover from '../Components/MediaCover';
 import ClientService from '../service/ClientService';
-import ClientsTable from './ClientsTable';
+import ClientsTable from '../Components/ClientsTable';
 import UserList from '../Components/UserList';
+import { useLoadingContext } from "react-router-loading";
 
 
-export default class Clients extends React.Component {
+import { useState, useEffect } from 'react';
 
-  constructor(props) {
-      super(props);
-      this.state = {
-        clientList:[]
-      };
+export default function Clients() {
+  const [clientList, setClientList] = useState([]);
+  const loadingContext = useLoadingContext();
 
-    this.clientsClick = this.clientsClick.bind(this);
-  };
-
-  componentDidMount(){
+  useEffect(() => {
     ClientService.getClients().then((response) => {
-        this.setState({clientList:response})
+      setClientList(response);
     });
+  }, []);
+  
 
-    console.log(this.clientList)
-  }
+  console.log('hola')
+  console.log(clientList)
 
-
-  clientsClick = () => {
-    this.state.clients();
-  };
-
-  render(){
-    
-    return (
-        <html className='home-html-body'>
-          <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
-          <TopBar></TopBar>
-          <SideBar clientsClick={this.clientsClick}/>
-          <body className='clients-html-body'>
-
-            {/*<ClientsTable clients={this.state.clientList}/>*/}
-
-            <UserList clients={this.state.clientList}></UserList>
-              
-            <div className='circle-clients'> </div>
-          </body>
-        </html>
-        
-    );
-  }
+  return (
+    <html className='home-html-body'>
+      <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
+      <TopBar></TopBar>
+      <SideBar/>
+      <body className='clients-html-body'>
+        <UserList clients={clientList}></UserList>
+        <div className='circle-clients'> </div>
+      </body>
+    </html>
+  );
 }
-
