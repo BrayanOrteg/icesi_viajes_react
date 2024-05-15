@@ -50,7 +50,7 @@ export default function SideBar() {
             <List>
 
             <ListItem>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => navigate('/home')}>
                         <ListItemIcon>
                             <HomeIcon sx={{color:"white"}}/>
                         </ListItemIcon>

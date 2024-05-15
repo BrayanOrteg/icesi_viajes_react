@@ -12,6 +12,15 @@ export const setAuthHeader = (token) => {
     }
 };
 
+export const setUser = (user) => {
+ 
+  window.localStorage.setItem("user", user);
+};
+
+export const getUser = () => {
+  return window.localStorage.getItem('user');
+};
+
 
 axios.defaults.baseURL = 'http://localhost:9091';
 axios.defaults.headers.post['Content-Type'] = 'application/json';

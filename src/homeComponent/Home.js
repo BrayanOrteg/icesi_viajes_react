@@ -35,9 +35,6 @@ export default class Home extends React.Component {
           <TopBar></TopBar>
           <SideBar clientsClick={this.clientsClick}/>
           <body className='home-html-body'>
-            <MediaCover></MediaCover>
-              <button type="submit" className='logout' onClick={this.onLogout} >Cerrar Sesión</button>
-              
               <div className='circle-home'> </div>
           </body>
         </html>

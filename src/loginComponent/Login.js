@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import logo from './assets/logo_icesi.png';
-import { request, setAuthHeader} from '../axios_helper';
+import { request, setAuthHeader, setUser} from '../axios_helper';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
@@ -32,9 +32,10 @@ export default function Login({role}) {
             (response) => {
 
                 setAuthHeader(response.data.token);
+                setUser(response.data.name);
                 const decoded = jwtDecode(response.data.token);
-                role(decoded.role)
-                navigate('/home')
+                role(decoded.role);
+                navigate('/home');
 
             }).catch(
             (error) => {

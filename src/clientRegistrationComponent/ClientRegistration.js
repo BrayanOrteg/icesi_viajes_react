@@ -3,21 +3,37 @@ import './ClientRegistration.css';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import  {useState} from 'react';
-import { TextField, Button, Container, Stack } from '@mui/material';
+import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ClientService from '../service/ClientService';
 
 
 export function ClientRegistration(){
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
+    const [id, setId] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState('')
-    const [password, setPassword] = useState('')
- 
-    function handleSubmit(event) {
+    const [phone, setPhone] = useState('')
+    const [sex, setSex] = useState('')
+    const [idType, setIdType] = useState('')
+    const navigate = useNavigate();
+
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(firstName, lastName, email, dateOfBirth, password) 
-    }
+        console.log(firstName, lastName, id, dateOfBirth, phone, sex,  idType) 
+
+        ClientService.registerClient(firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
+            (response) => {
+
+                navigate('/clients');
+
+            }).catch(
+            (error) => {
+                
+            });
+    };
 
 
     return (
@@ -55,35 +71,35 @@ export function ClientRegistration(){
                 </Stack>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
-                        type="id"
+                        type="text"
                         variant='outlined'
                         color='secondary'
                         label="Número de identificación"
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
+                        onChange={e => setId(e.target.value)}
+                        value={id}
                         fullWidth
                         required
                         sx={{mb: 4}}
                     />
                     <TextField
-                        type="idType"
+                        type="text"
                         variant='outlined'
                         color='secondary'
                         label="Tipo de identificación"
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
+                        onChange={e => setIdType(e.target.value)}
+                        value={idType}
                         fullWidth
                         required
                         sx={{mb: 4}}
                     />
                 </Stack>
                 <TextField
-                    type="password"
+                    type="text"
                     variant='outlined'
                     color='secondary'
                     label="Teléfono"
-                    onChange={e => setPassword(e.target.value)}
-                    value={password}
+                    onChange={e => setPhone(e.target.value)}
+                    value={phone}
                     required
                     fullWidth
                     sx={{mb: 4}}
@@ -99,21 +115,28 @@ export function ClientRegistration(){
                     required
                     sx={{mb: 4}}
                 />
-                <TextField
-                        type="sex"
-                        variant='outlined'
-                        color='secondary'
-                        label="Sexo"
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        fullWidth
-                        required
-                        sx={{mb: 4}}
-                    />
-                <Button variant="outlined" color="secondary" type="submit">Guardar</Button>
+                <FormControl >
+                <InputLabel>Sexo</InputLabel>
+                <Select
+                    type="text"
+                    value={sex}
+                    variant='outlined'
+                    color='secondary'
+                    label="Sex"
+                    onChange={e => setSex(e.target.value)}
+                    fullWidth
+                    required
+                    x={{mb: 4}}
+                >
+                    <MenuItem value={'M'}>Masculino</MenuItem>
+                    <MenuItem value={'F'}>Femenino</MenuItem>
+                </Select>
+                </FormControl>
+
+                <button className= 'saveBttn' type="submit">Guardar</button>
+                
             </form>
             </div>
-     
 
             <div className='circle-clients'> </div>
         </body>
