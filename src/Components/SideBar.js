@@ -15,6 +15,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import Logo from '../Commons/logo_icesi.png'
 import { useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 240;
 
@@ -48,7 +49,16 @@ export default function SideBar() {
 
             <List>
 
-                <ListItem>
+            <ListItem>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <HomeIcon sx={{color:"white"}}/>
+                        </ListItemIcon>
+                        <ListItemText primary={"Home"} />
+                    </ListItemButton>
+                </ListItem>
+
+                <ListItem style={{paddingTop:"10%"}}>
                     <ListItemButton>
                         <ListItemIcon>
                             <PlaceIcon sx={{color:"white"}}/>

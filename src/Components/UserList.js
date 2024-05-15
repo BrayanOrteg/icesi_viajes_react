@@ -46,7 +46,6 @@ export default function UserList({clients}) {
       console.log('hola1')
       console.log(clients)
 
-
       const handlesearch=(event)=>{
         
         const getSearch= event.target.value; 

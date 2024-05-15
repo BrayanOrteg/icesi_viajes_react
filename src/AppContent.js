@@ -7,6 +7,7 @@ import Clients from './clientsComponent/Clients';
 import { useState } from 'react';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ClientRegistration from './clientRegistrationComponent/ClientRegistration';
 
 export function App() {
 
@@ -30,6 +31,8 @@ export function App() {
                 <Route exact path="/clients" element={role === "ADMIN" ? (<Clients/>) : (<Navigate replace to={"/"} />)} />
 
                 <Route exact path="/client" element={role === "ADMIN" ? (<Client/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/client/registration" element={role === "ADMIN" ? (<ClientRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
 
             </Routes>
