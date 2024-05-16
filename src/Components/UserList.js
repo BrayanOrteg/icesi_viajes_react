@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import UserCard from './UserCard';
 import{ useState, useEffect } from 'react';
 import ClientsTable from './ClientsTable';
+import { TextField } from '@mui/material';
 
 export default function UserList({clients}) {
 
@@ -71,10 +72,15 @@ export default function UserList({clients}) {
             marginRight: '50vh'
             }}>
             <Table aria-label="customized table">
-              <TableHead>
+              <TableHead sx = {{height: 100}}>
+
                 <TableRow>
                 <div className= 'searchDiv'>
-                <input  type="text" name='name' value={query}   className="form-control" onChange={(e)=>handlesearch(e)} placeholder='Search...' />
+
+                <TextField name='name' value={query} onChange={(e)=>handlesearch(e)} placeholder='Search...' 
+                
+                sx = {{backgroundColor: 'white', marginLeft: 2, borderRadius: 2}}/>
+
                 </div>
                 </TableRow>
               </TableHead>
