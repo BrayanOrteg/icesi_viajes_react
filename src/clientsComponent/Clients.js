@@ -36,12 +36,7 @@ export default function Clients() {
       <TopBar></TopBar>
       <SideBar/>
       <body className='clients-html-body'>
-        <UserList clients={clientList}></UserList>
-
-        <button onClick={() => navigate('/client/registration')}>
-          <AddCircleIcon sx={{color:'white'} }/>
-        </button>  
-        
+        <UserList clients={clientList}></UserList> 
         <div className='circle-clients'> </div>
       </body>
     </html>
