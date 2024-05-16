@@ -34,7 +34,7 @@ export default function TopBar() {
             sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, 
                     backgroundColor: '#55B8A1', boxShadow:"none", display:'flex', flexDirection:'row'}}
         >
-            <Toolbar sx={{ width:'100%', display:'flex',  flexDirection:'row', alignItems:'flex-end'}}>
+            <Toolbar sx={{ width:'100%', display:'flex',  flexDirection:'row', alignItems:'flex-end', justifyContent:'flex-end'}}>
                 
                     <Typography variant="h6" noWrap component="div">
                         {user}
