@@ -6,33 +6,58 @@ import  {useState} from 'react';
 import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ClientService from '../service/ClientService';
+import { useLocation } from "react-router-dom";
+import moment from 'moment';
 
 
-export function ClientRegistration(){
+export function ClientEdit(){
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [id, setId] = useState('')
-    const [dateOfBirth, setDateOfBirth] = useState('')
-    const [phone, setPhone] = useState('')
-    const [sex, setSex] = useState('')
-    const [idType, setIdType] = useState('')
+    const location = useLocation();
+
+    let clientObj = location.state.clientObj;
+
+    const [firstName, setFirstName] = useState(clientObj.firstName)
+    const [lastName, setLastName] = useState(clientObj.lastName)
+    const [id, setId] = useState(clientObj.nationalID)
+    const [dateOfBirth, setDateOfBirth] = useState( new Date(clientObj.birthDate).toISOString().split('T')[0])
+
+    console.log(new Date(clientObj.birthDate).toISOString().split('T')[0])
+    const [phone, setPhone] = useState(clientObj.tel1)
+    const [sex, setSex] = useState(clientObj.sex)
+
+    console.log(clientObj.sex)
+    const [idType, setIdType] = useState(clientObj.typeNID)
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
+    const regex = /[^a-zA-Z\s]/
+
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         console.log(firstName, lastName, id, dateOfBirth, phone, sex,  idType) 
 
-        ClientService.registerClient(firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
-            (response) => {
+        const adult = moment().diff(dateOfBirth, 'years')
 
-                navigate('/clients');
 
-            }).catch(
-            (error) => {
-                
-            });
+        if(regex.test(firstName) || regex.test(lastName)){
+            setErrorMessage('El nombre y el apellido no pueden contener números o caracteres especiales.');
+
+        }else if(adult < 18){
+            setErrorMessage('Necesita tener más de 18 años.');
+
+        }else{
+            ClientService.updateClient(clientObj.id, firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
+                (response) => {
+    
+                    navigate('/clients');
+    
+                }).catch(
+                (error) => {
+                    
+                });
+        }
     };
 
 
@@ -45,7 +70,7 @@ export function ClientRegistration(){
 
         
         <div className='formDiv'>
-            <h2>Registro de cliente</h2>
+            <h2>Editar cliente</h2>
             <form onSubmit={handleSubmit}>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
@@ -136,6 +161,8 @@ export function ClientRegistration(){
                 <button className= 'saveBttn' type="submit">Guardar</button>
                 
             </form>
+
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </div>
 
             <div className='circle-clients'> </div>
@@ -146,4 +173,4 @@ export function ClientRegistration(){
     
   }
 
-export default ClientRegistration;
+export default ClientEdit;

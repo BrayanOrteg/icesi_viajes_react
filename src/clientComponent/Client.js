@@ -4,11 +4,13 @@ import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import { useLocation } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { colors } from '@mui/material';
 import ClientService from '../service/ClientService';
 import { useNavigate } from 'react-router-dom';
 import userPhoto from '../Commons/exampleUser.jpg';
 import Avatar from '@mui/material/Avatar';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function Client(){
     
@@ -30,6 +32,15 @@ export default function Client(){
             (error) => {
                 console.log(error)
             });
+    };
+
+    const handleEditClick = async (e) => {
+        e.preventDefault();
+
+        navigate('/client/edit',{
+            state: {
+              clientObj: clientObj,
+            }})
     };
 
     return (
@@ -76,9 +87,14 @@ export default function Client(){
 
                 
                 <button className= 'button-deleteClient' onClick= {handleClick}>
-                <DeleteIcon sx={{color:'red'}}/>
-
+                <DeleteIcon sx={{color:'white'}}/>
                 </button>
+
+                <button className= 'button-editClient' onClick= {handleEditClick}>
+                <EditIcon sx={{color:'white'}}/>
+                </button>
+
+
                 <div className='preferenceInfo-client'>
 
                     <h2 className='tittleClientInfo-client'>Preferencias</h2>

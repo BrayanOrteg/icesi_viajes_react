@@ -45,7 +45,7 @@ export default function UserList({clients}) {
         const getSearch= event.target.value; 
         if(getSearch.length > 0)
         {     
-        const searchdata= filterdata.filter( (item)=> item.name.toLowerCase().includes(getSearch));
+        const searchdata= filterdata.filter( (item)=> item.name.toLowerCase().includes(getSearch.toLowerCase()));
         setUserdata(searchdata);
         } else {
           setUserdata(filterdata);
