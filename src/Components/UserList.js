@@ -10,13 +10,19 @@ import Paper from '@mui/material/Paper';
 import UserCard from './UserCard';
 import{ useState, useEffect } from 'react';
 import ClientsTable from './ClientsTable';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import { Grid } from '@mui/joy';
+import { Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export default function UserList({clients}) {
 
     const [query, setQuery] = useState('');
     const [filterdata, setFilterdata]= useState(Object.values({clients})[0]);
     const [userdata, setUserdata]= useState(filterdata);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
       setFilterdata(Object.values({clients})[0])
@@ -27,25 +33,12 @@ export default function UserList({clients}) {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: '#46ad95',
+          color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
           fontSize: 14,
         },
       }));
-      
-      const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        '&:nth-of-type(odd)': {
-          backgroundColor: theme.palette.action.hover,
-        },
-        // hide last border
-        '&:last-child td, &:last-child th': {
-          border: 0,
-        },
-      }));
-
-
-      console.log('hola1')
-      console.log(clients)
 
       const handlesearch=(event)=>{
         
@@ -59,34 +52,55 @@ export default function UserList({clients}) {
         }
         setQuery(getSearch);
       }
-
-      console.log('hola2')
-      console.log(clients)
       
         return (
+          <>
+          <Stack>
           <TableContainer component={Paper} sx={{
-            height: '70vh',
-            width: '100vh',
             zIndex: 1,
-            marginTop: '10vh',
+            width: '100vh',
             }}>
             <Table aria-label="customized table">
-              <TableHead sx = {{height: 100}}>
-
-                <TableRow>
-                <div className= 'searchDiv'>
-
-                <TextField name='name' value={query} onChange={(e)=>handlesearch(e)} placeholder='Search...' 
+            <TableHead sx={{height: '15vh'}}>
+              <TableRow>
+                <StyledTableCell>
+                  <Grid container wrap="nowrap" alignItems="center">
+                    <Grid item xs={12}>
+                    <TextField name='name' value={query} onChange={(e)=>handlesearch(e)} placeholder='Search...' 
                 
                 sx = {{backgroundColor: 'white', marginLeft: 2, borderRadius: 2}}/>
-
-                </div>
-                </TableRow>
-              </TableHead>
+                    </Grid>
+                    <Grid item>
+                      <Button onClick={() => navigate('/client/registration')} sx={{
+                        width:'fit-content', 
+                        height:'fit-content',
+                        borderRadius:10,
+                        '&:hover': {
+                            color: "white",
+                            backgroundColor:'#46ad95'
+                          }
+                        }}>
+                        <AddCircleIcon sx={{color:'white'} }/>
+                      </Button> 
+                    </Grid>
+                  </Grid>
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            </Table>
+          </TableContainer>
+          <TableContainer component={Paper} sx={{
+            height: '60vh',
+            width: '100vh',
+            zIndex: 1,
+            }}>
+            <Table aria-label="customized table">
               <TableBody>
               <ClientsTable userdata= {userdata}/>
               </TableBody>
             </Table>
           </TableContainer>
+          </Stack>
+          </>
         );
 }
