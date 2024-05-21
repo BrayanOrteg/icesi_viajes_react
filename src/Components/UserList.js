@@ -69,7 +69,6 @@ export default function UserList({clients}) {
             width: '100vh',
             zIndex: 1,
             marginTop: '10vh',
-            marginRight: '50vh'
             }}>
             <Table aria-label="customized table">
               <TableHead sx = {{height: 100}}>

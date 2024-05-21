@@ -4,6 +4,7 @@ import Login from './loginComponent/Login';
 import Home from './homeComponent/Home';
 import Client from './clientComponent/Client';
 import Clients from './clientsComponent/Clients';
+import ClientEdit from './clientEditComponent/ClientEdit';
 import { useState } from 'react';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -34,6 +35,7 @@ export function App() {
 
                 <Route exact path="/client/registration" element={role === "ADMIN" ? (<ClientRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
+                <Route exact path="/client/edit" element={role === "ADMIN" ? (<ClientEdit/>) : (<Navigate replace to={"/"} />)}/>
 
             </Routes>
         </BrowserRouter>
