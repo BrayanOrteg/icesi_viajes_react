@@ -6,7 +6,7 @@ import  {useState} from 'react';
 import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ClientService from '../service/ClientService';
-
+import moment from 'moment';
 
 export function ClientRegistration(){
 
@@ -18,21 +18,36 @@ export function ClientRegistration(){
     const [sex, setSex] = useState('')
     const [idType, setIdType] = useState('')
     const navigate = useNavigate();
-
+    const [errorMessage, setErrorMessage] = useState('');
+    const regex = /[^a-zA-Z\s]/
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         console.log(firstName, lastName, id, dateOfBirth, phone, sex,  idType) 
 
-        ClientService.registerClient(firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
-            (response) => {
+        const adult = moment().diff(dateOfBirth, 'years')
 
-                navigate('/clients');
 
-            }).catch(
-            (error) => {
-                
-            });
+        if(regex.test(firstName) || regex.test(lastName)){
+            setErrorMessage('El nombre y el apellido no pueden contener números o caracteres especiales.');
+
+        }else if(adult < 18){
+            setErrorMessage('Necesita tener más de 18 años.');
+
+        }else{
+            ClientService.registerClient(firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
+                (response) => {
+    
+                    navigate('/clients');
+    
+                }).catch(
+                (error) => {
+                    
+                });
+        }
+
+
     };
 
 
@@ -71,7 +86,7 @@ export function ClientRegistration(){
                 </Stack>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
-                        type="text"
+                        type="number"
                         variant='outlined'
                         color='secondary'
                         label="Número de identificación"
@@ -94,7 +109,7 @@ export function ClientRegistration(){
                     />
                 </Stack>
                 <TextField
-                    type="text"
+                    type="number"
                     variant='outlined'
                     color='secondary'
                     label="Teléfono"
@@ -136,8 +151,11 @@ export function ClientRegistration(){
                 <button className= 'saveBttn' type="submit">Guardar</button>
                 
             </form>
-            </div>
 
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+            </div>
+            
             <div className='circle-clients'> </div>
         </body>
         </html>
