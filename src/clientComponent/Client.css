@@ -21,7 +21,15 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
+
+.container-buttons{
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+
 
 .personalInfo-client{
   display: flex;

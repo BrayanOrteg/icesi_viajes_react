@@ -41,7 +41,8 @@ const  UserCard = ({userHeight, userWidth, client}) => {
                     <Avatar src={userPhoto}></Avatar>
                 </Grid>
                 <Grid item xs zeroMinWidth>
-                    <Typography noWrap>{client.name}</Typography>
+                    <Typography noWrap sx={{ fontWeight: 'bold' }}>{client.name}</Typography>
+                    <Typography noWrap >ID. {client.nationalID}</Typography>
                 </Grid>
                 <Grid item xs zeroMinWidth textAlign={'right'}>
                     <Button className='classes.buttonStyle' sx={{

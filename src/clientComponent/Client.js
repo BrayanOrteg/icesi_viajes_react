@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import userPhoto from '../Commons/exampleUser.jpg';
 import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import zIndex from '@mui/material/styles/zIndex';
 
 export default function Client(){
     
@@ -76,23 +77,27 @@ export default function Client(){
 
                 <div className='photo-client'>
                     
-                <Avatar src={userPhoto} style={{
-                    width: '160px',
-                    height: '160px',
-                    minWidth: '160px', 
-                    minHeight: '160px', 
-                }}></Avatar>
-                 <span className="name-client">{clientObj.name}</span>   
+                    <Avatar src={userPhoto} style={{
+                        width: '160px',
+                        height: '160px',
+                        minWidth: '160px', 
+                        minHeight: '160px', 
+                    }}></Avatar>
+                    <span className="name-client">{clientObj.name}</span>  
+
+                    <div className='container-buttons'>
+
+                        <button className= 'button-deleteClient' style={{width: '10%', marginRight:'10%'}} onClick= {handleClick}>
+                        <DeleteIcon sx={{color:'white'}}/>
+                        </button>
+
+                        <button className= 'button-editClient' style={{width: '10%',  marginRight:'10%'}} onClick= {handleEditClick}>
+                        <EditIcon sx={{color:'white'}}/>
+                        </button>
+
+                    </div> 
+
                  </div>
-
-                
-                <button className= 'button-deleteClient' onClick= {handleClick}>
-                <DeleteIcon sx={{color:'white'}}/>
-                </button>
-
-                <button className= 'button-editClient' onClick= {handleEditClick}>
-                <EditIcon sx={{color:'white'}}/>
-                </button>
 
 
                 <div className='preferenceInfo-client'>
