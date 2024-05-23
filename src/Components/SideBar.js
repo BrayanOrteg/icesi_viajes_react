@@ -75,7 +75,7 @@ export default function SideBar() {
                     </ListItemButton>
                 </ListItem>
                 <ListItem style={{paddingTop:"10%"}}>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => navigate('/employees')}>
                         <ListItemIcon>
                             <BadgeIcon sx={{color:"white"}}/>
                         </ListItemIcon>

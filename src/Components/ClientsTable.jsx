@@ -1,6 +1,7 @@
 import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import UserCard from './UserCard';
+import EmployeeCard from './EmployeeCard';
 import { styled } from '@mui/material/styles';
 
 
@@ -24,7 +25,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 
-const mapComp=({userdata})=>{
+const mapComp=({userdata,card})=>{
 
     return(
     <>
@@ -32,7 +33,8 @@ const mapComp=({userdata})=>{
         userdata.map((client) => (
             <StyledTableRow key={client.id}>
             <StyledTableCell>
-                <UserCard client={client}></UserCard>
+               {card==='userCard' && <UserCard client={client}></UserCard>} 
+               {card==='employeeCard' && <EmployeeCard client={client}></EmployeeCard>} 
             </StyledTableCell>
             </StyledTableRow>
         ))}

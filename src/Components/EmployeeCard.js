@@ -7,8 +7,6 @@ import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,7 +52,7 @@ const  UserCard = ({client}) => {
                             color: "white",
                             backgroundColor:'#46ad95'
                           }
-                        }} onClick={() => navigate('/client',{
+                        }} onClick={() => navigate('/employee',{
                             state: {
                               clientObj: client,
                             }})}>

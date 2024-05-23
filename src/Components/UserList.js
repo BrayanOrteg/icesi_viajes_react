@@ -16,7 +16,7 @@ import { Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-export default function UserList({clients}) {
+export default function UserList({clients,card}) {
 
     const [query, setQuery] = useState('');
     const [filterdata, setFilterdata]= useState(Object.values({clients})[0]);
@@ -52,6 +52,16 @@ export default function UserList({clients}) {
         }
         setQuery(getSearch);
       }
+
+
+      const handleEdit=()=>{
+
+        if (card==='userCard') {
+          navigate('/client/registration')
+        } else if (card==='employeeCard') {
+          navigate('/employee/registration')
+        }
+      }
       
         return (
           <>
@@ -71,7 +81,7 @@ export default function UserList({clients}) {
                 sx = {{backgroundColor: 'white', marginLeft: 2, borderRadius: 2}}/>
                     </Grid>
                     <Grid item>
-                      <Button onClick={() => navigate('/client/registration')} sx={{
+                      <Button onClick={() => handleEdit()} sx={{
                         width:'fit-content', 
                         height:'fit-content',
                         borderRadius:10,
@@ -96,7 +106,7 @@ export default function UserList({clients}) {
             }}>
             <Table aria-label="customized table">
               <TableBody>
-              <ClientsTable userdata= {userdata}/>
+              <ClientsTable userdata= {userdata} card={card} />
               </TableBody>
             </Table>
           </TableContainer>
