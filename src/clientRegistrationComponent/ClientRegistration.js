@@ -50,11 +50,19 @@ export function ClientRegistration(){
 
     };
 
+    const handleGoBackClick = async(e) => {
+        navigate('/clients')
+    };
+
 
     return (
         <html className='client-html-body'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
-        <TopBar></TopBar>
+        <TopBar>
+            <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
+                Regresar
+            </button>
+        </TopBar>
         <SideBar/>
         <body className='client-html-body'>
 
