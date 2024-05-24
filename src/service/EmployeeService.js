@@ -15,6 +15,9 @@ class EmployeeService{
         return request("POST","api/v1/users/create",{id: Date.now() ,login: userName, password: password,name: name, nationalID:id, status: 'Active', image: null, toke:null, role:role}).then((response => response.data));
     }
 
+    updateEmployee(userName, password, name, id, role,nationalID){
+        return request("POST", "api/v1/users/update",{id: id ,login: userName, password: password,name: name, nationalID:nationalID, status: 'Active', image: null, toke:null, role:role}).then((response => response.data));
+    }
 }
 
 export default new EmployeeService();
