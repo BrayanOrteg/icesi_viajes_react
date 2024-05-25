@@ -8,7 +8,7 @@ import TableHead, { tableHeadClasses } from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UserCard from './UserCard';
-import{ useState, useEffect } from 'react';
+import{ useState, useEffect, useRef } from 'react';
 import ClientsTable from './ClientsTable';
 import { Button, TextField } from '@mui/material';
 import { Grid } from '@mui/joy';
@@ -22,7 +22,7 @@ export default function UserList({clients,card}) {
     const [filterdata, setFilterdata]= useState(Object.values({clients})[0]);
     const [userdata, setUserdata]= useState(filterdata);
     const navigate = useNavigate();
-
+    const inputRef = useRef(null);
 
     useEffect(() => {
       setFilterdata(Object.values({clients})[0])
@@ -62,6 +62,13 @@ export default function UserList({clients,card}) {
           navigate('/employee/registration')
         }
       }
+
+      
+      useEffect(() => {
+        if (inputRef.current) {
+          inputRef.current.focus(); 
+        }
+      }, [query]); 
       
         return (
           <>
@@ -77,8 +84,10 @@ export default function UserList({clients,card}) {
                   <Grid container wrap="nowrap" alignItems="center">
                     <Grid item xs={12}>
                     <TextField name='name' value={query} onChange={(e)=>handlesearch(e)} placeholder='Search...' 
-                
-                sx = {{backgroundColor: 'white', marginLeft: 2, borderRadius: 2}}/>
+                      
+                      sx = {{backgroundColor: 'white', marginLeft: 2, borderRadius: 2}}
+                      inputRef={inputRef}
+                    />
                     </Grid>
                     <Grid item>
                       <Button onClick={() => handleEdit()} sx={{
