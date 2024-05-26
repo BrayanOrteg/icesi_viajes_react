@@ -20,7 +20,7 @@ class ClientService{
     }
 
     getIdTypes(){
-        return request("GET","api/v1/clients/ids",{}).then((response => response.data));
+        return request("GET","api/v1/idTypes/all",{}).then((response => response.data));
     }
 }
 
