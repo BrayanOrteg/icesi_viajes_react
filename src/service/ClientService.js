@@ -17,6 +17,12 @@ class ClientService{
     deleteClient(id){
         console.log(id)
         return request("POST","api/v1/clients/delete", id).then((response => response.data));
-    }}
+    }
+
+    getIdTypes(){
+        return request("GET","api/v1/clients/ids",{}).then((response => response.data));
+    }
+}
+
 
 export default new ClientService();

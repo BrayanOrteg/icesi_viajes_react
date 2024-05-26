@@ -14,8 +14,8 @@ class DestinatioService{
         return request("POST","api/v1/destinations/create",{id: Date.now(), code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active', image: null, selectedTypes: selectedTypes}).then((response => response.data));
     }
 
-    updateDestination(userName, password, name, id, role,nationalID){
-        return request("POST", "api/v1/destinations/update",{id: id ,login: userName, password: password,name: name, nationalID:nationalID, status: 'Active', image: null, toke:null, role:role}).then((response => response.data));
+    updateDestination(id, code, name, description, price, byLandLabel, bySeaLabel, byAirLabel){
+        return request("POST", "api/v1/destinations/update",{id: id, code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active', image: null}).then((response => response.data));
     }
 
     getDestinationTypes(){

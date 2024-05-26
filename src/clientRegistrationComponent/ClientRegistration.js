@@ -2,11 +2,11 @@ import React from 'react';
 import './ClientRegistration.css';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
-import  {useState} from 'react';
 import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ClientService from '../service/ClientService';
 import moment from 'moment';
+import  {useState, useEffect} from 'react';
 
 export function ClientRegistration(){
 
@@ -19,7 +19,13 @@ export function ClientRegistration(){
     const [idType, setIdType] = useState('')
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
+    const [idTypes,setIdTypes] = useState([])
     const regex = /[^a-zA-Z\s]/
+
+
+    useEffect(() => {
+        
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -151,6 +157,7 @@ export function ClientRegistration(){
                     required
                     x={{mb: 4}}
                 >
+
                     <MenuItem value={'M'}>Masculino</MenuItem>
                     <MenuItem value={'F'}>Femenino</MenuItem>
                 </Select>

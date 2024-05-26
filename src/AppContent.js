@@ -19,6 +19,7 @@ import EmployeeEdit from './employeeEditComponet/employeeEdit';
 import Destinations from './destinationsComponent/Destinations';
 import Destination from './destinationComponent/Destination';
 import DestinationRegistration from './destinationRegistrationComponent/DestinationRegistration';
+import DestinationEdit from './destinationEditComponent/DestinationEdit';
 
 export function App() {
 
@@ -60,6 +61,8 @@ export function App() {
                 <Route exact path="/destination" element={role === "ADMIN" ? (<Destination/>) : (<Navigate replace to={"/"} />)}/>
 
                 <Route exact path="/destination/registration" element={role === "ADMIN" ? (<DestinationRegistration/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/destination/edit" element={role === "ADMIN" ? (<DestinationEdit/>) : (<Navigate replace to={"/"} />)}/>
 
             </Routes>
         </BrowserRouter>

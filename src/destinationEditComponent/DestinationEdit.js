@@ -1,5 +1,5 @@
 import React from 'react';
-import './DestinationRegistration.css';
+import './DestinationEdit.css';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import  {useState, useEffect} from 'react';
@@ -14,65 +14,59 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
+import { useLocation } from "react-router-dom";
 
-export function DestinationRegistration(){
+export function DestinationEdit(){
 
-    const [name,setName] = useState('')
-    const [code,setCode] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState()
-    const [types,setTypes] = useState([])
-    const [selectedTypes,setSelectedTypes] = useState([])
 
-    const [byLandLabel, setByLandLabel] = useState('False')
-    const [bySeaLabel, setBySeaLabel] = useState('False')
-    const [byAirLabel, setByAirLabel] = useState('False')
+    const location = useLocation();
+
+    let clientObj = location.state.clientObj;
+
+    const [name,setName] = useState(clientObj.name)
+    const [code,setCode] = useState(clientObj.code)
+    const [description, setDescription] = useState(clientObj.description)
+    const [price, setPrice] = useState(clientObj.price)
+
+    const [byLandLabel, setByLandLabel] = useState(clientObj.byLand)
+    const [bySeaLabel, setBySeaLabel] = useState(clientObj.bySea)
+    const [byAirLabel, setByAirLabel] = useState(clientObj.byAir)
+
+    const [byLandVar, setByLandVar] = useState(false)
+    const [bySeaVar, setBySeaVar] = useState(false)
+    const [byAirVar, setByAirVar] = useState(false)
 
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-Z\s]/
 
-    const handleChange = (event) => {
-        const {
-          target: { value },
-        } = event;
-        
-        setSelectedTypes(
-          typeof value === 'string' ? value.split(',') : value,
-        );
-    };
-
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 8;
-
-    const MenuProps = {
-        PaperProps: {
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            maxwidth: 250,
-          },
-        },
-    };
-
     useEffect(() => {
-        DestinationService.getDestinationTypes().then((response) => {
-            setTypes(response);
-            console.log(types)
-        });  
+
+        if (bySeaLabel === 'True'){
+            setBySeaVar(true)
+        }
+        if (byAirLabel === 'True'){
+            setByAirVar(true)
+        }
+        if (byLandLabel === 'True'){
+            setByLandVar(true)
+        }
+        
     }, []);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes) 
+        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel) 
 
 
         if(regex.test(name)){
-            setErrorMessage('El nombre y la descripción no pueden contener números o caracteres especiales.');
+            setErrorMessage('El nombre no puede contener números o caracteres especiales.');
 
         }else{
 
-            DestinationService.registerDestination(code, name,description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes).then(
+            DestinationService.updateDestination(clientObj.id,code, name,description, price, byLandLabel, bySeaLabel, byAirLabel).then(
                 (response) => {
     
                     navigate('/destinations');
@@ -87,7 +81,10 @@ export function DestinationRegistration(){
     };
 
     const handleGoBackClick = async(e) => {
-        navigate('/destinations')
+        navigate('/destination',{
+            state: {
+              clientObj: clientObj,
+            }})
     };
 
 
@@ -172,19 +169,25 @@ export function DestinationRegistration(){
                 
                     <FormControlLabel
                         control={<Checkbox />} 
-                        label="Air"  
+                        label="Air"
+                        checked={byAirVar}
+                        onClick={(e) => setByAirVar(!byAirVar)}
                         onChange={handleAir}
                         />
 
                     <FormControlLabel
                         control={<Checkbox />} 
                         label="Mar"  
+                        checked={bySeaVar}
+                        onClick={(e) => setBySeaVar(!bySeaVar)}
                         onChange={handleSea}
                         />
 
                     <FormControlLabel
                         control={<Checkbox />} 
                         label="Tierra"  
+                        checked={byLandVar}
+                        onClick={(e) => setByLandVar(!byLandVar)}
                         onChange={handleLand}
                         />
      
@@ -200,25 +203,6 @@ export function DestinationRegistration(){
                     fullWidth
                     sx={{mb: 4}}
                 />
-
-<InputLabel id="demo-multiple-checkbox-label">Tipo</InputLabel>
-        <Select
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
-          multiple
-          value={selectedTypes}
-          onChange={handleChange}
-          input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
-        >
-          {types.map((type) => (
-            <MenuItem key={type.name} value={type.name}>
-              <Checkbox checked={selectedTypes.indexOf(type.name) > -1}/>
-              <ListItemText primary={type.name}/>
-            </MenuItem>
-          ))}
-        </Select>
 
                 <button className= 'saveBttn' type="submit">Guardar</button>
                 
@@ -236,4 +220,4 @@ export function DestinationRegistration(){
     
   }
 
-export default DestinationRegistration;
+export default DestinationEdit;
