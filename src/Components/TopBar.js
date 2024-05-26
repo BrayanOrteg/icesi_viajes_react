@@ -27,7 +27,7 @@ export default function TopBar({ children }) {
     };
 
     return (
-        <Box sx={{ display: 'flex', zIndex: 1, color: 'white' }}>
+        <Box sx={{ display: 'flex', zIndex: 2, color: 'white'}}>
         <CssBaseline />
         <AppBar
             position="fixed"

@@ -90,7 +90,7 @@ export default function SideBar() {
                         <ListItemText primary={"Analíticas"} />
                     </ListItemButton>
                 </ListItem>
-                <ListItem style={{paddingTop:"10%"}}>
+                <ListItem style={{paddingTop:"10%"}} onClick={() => navigate('/plan/registration')}>
                     <ListItemButton>
                         <ListItemIcon>
                             <BookmarkAddIcon sx={{color:"white"}}/>

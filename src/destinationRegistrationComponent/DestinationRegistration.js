@@ -231,7 +231,6 @@ export function DestinationRegistration(){
             <div className='circle-clients'> </div>
         </body>
         </html>
-        
     );
     
   }
