@@ -59,7 +59,7 @@ export default function SideBar() {
                 </ListItem>
 
                 <ListItem style={{paddingTop:"10%"}}>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => navigate('/destinations')}>
                         <ListItemIcon>
                             <PlaceIcon sx={{color:"white"}}/>
                         </ListItemIcon>

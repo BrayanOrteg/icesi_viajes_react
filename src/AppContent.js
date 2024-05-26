@@ -16,6 +16,10 @@ import Employees from './employeesComponent/Employees';
 import EmployeeRegistration from './employeeRegistrationComponent/EmployeeRegistration';
 import EmployeeEdit from './employeeEditComponet/employeeEdit';
 
+import Destinations from './destinationsComponent/Destinations';
+import Destination from './destinationComponent/Destination';
+import DestinationRegistration from './destinationRegistrationComponent/DestinationRegistration';
+
 export function App() {
 
     const [role, setRole] = useState('');
@@ -50,6 +54,12 @@ export function App() {
                 <Route exact path="/employee/registration" element={role === "ADMIN" ? (<EmployeeRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
                 <Route exact path="/employee/edit" element={role === "ADMIN" ? (<EmployeeEdit/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/destinations" element={role === "ADMIN" ? (<Destinations/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/destination" element={role === "ADMIN" ? (<Destination/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/destination/registration" element={role === "ADMIN" ? (<DestinationRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
             </Routes>
         </BrowserRouter>

@@ -60,8 +60,10 @@ export default function UserList({clients,card}) {
           navigate('/client/registration')
         } else if (card==='employeeCard') {
           navigate('/employee/registration')
-        }
+        } else if (card==='destinationCard') {
+          navigate('/destination/registration')
       }
+    }
 
       
       useEffect(() => {
