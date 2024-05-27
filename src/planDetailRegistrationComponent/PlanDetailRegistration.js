@@ -107,7 +107,6 @@ export function PlanDetailRegistration(){
                     
                 </Stack>
 
-                
             </form>
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

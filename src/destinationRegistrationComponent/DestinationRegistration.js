@@ -28,6 +28,7 @@ export function DestinationRegistration(){
     const [bySeaLabel, setBySeaLabel] = useState('False')
     const [byAirLabel, setByAirLabel] = useState('False')
 
+
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-Z\s]/
