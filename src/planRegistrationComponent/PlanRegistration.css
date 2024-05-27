@@ -34,6 +34,9 @@
   width: calc(100% - 240px);
   height: calc(100vh - 60px);
   overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -103,24 +106,20 @@ input[type=number] {
     font-family: 'Rubik';
     font-size: 15px;
   }
+.formDiv {
+  background-color: #FAF9F9;
+  height: 100%;
+  width: 100%;
+  
+}
 
-  .formDiv{
-    margin-top: 4%;
-    background-color: #FAF9F9;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    height:auto;
-    z-index: 1;
-  }
+.form {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+}
 
-  .form{
-    align-self: flex-start;
-    height: 20%;
-  }
+
 
   .saveBttn {
     font-family: 'Rubik';

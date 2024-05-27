@@ -2,7 +2,7 @@ import React from 'react';
 import './PlanRegistration.css';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
-import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { TextField , Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ClientService from '../service/ClientService';
 import moment from 'moment';
@@ -83,13 +83,11 @@ export function PlanRegistration(){
 
         <div className='content'>
         
-        <div className='formDiv'>
-
-            <div >
+            <div className='formDiv' style={{height:'auto', display: 'flex', flexDirection:'column'}}>
+            <form onSubmit={handleSubmit} className='form' style={{width:'70%', height:'100%', display:'flex'}}>
             <h2>Registro de cliente</h2>
-            <form onSubmit={handleSubmit} className='form'>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
-                    <TextField
+                    <TextField className='textForm'
                         type="text"
                         variant='outlined'
                         color='secondary'
@@ -99,7 +97,7 @@ export function PlanRegistration(){
                         fullWidth
                         required
                     />
-                    <TextField
+                    <TextField className='textForm'
                         type="text"
                         variant='outlined'
                         color='secondary'
@@ -111,7 +109,7 @@ export function PlanRegistration(){
                     />
                 </Stack>
 
-                <TextField sx={{marginBottom: 4}}
+                <TextField className='textForm' sx={{marginBottom: 4}}
                         type="text"
                         variant='outlined'
                         color='secondary'
@@ -122,7 +120,7 @@ export function PlanRegistration(){
                         required
                     />
 
-                <TextField sx={{marginBottom: 4}}
+                <TextField className='textForm' sx={{marginBottom: 4}}
                         type="number"
                         variant='outlined'
                         color='secondary'
@@ -134,7 +132,7 @@ export function PlanRegistration(){
                     />
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
 
-                    <TextField
+                    <TextField className='textForm'
                         type="date"
                         variant='outlined'
                         color='secondary'
@@ -146,7 +144,7 @@ export function PlanRegistration(){
                         sx={{mb: 4}}
                     />
 
-                    <TextField 
+                    <TextField className='textForm' 
                         type="date"
                         variant='outlined'
                         color='secondary'
@@ -164,16 +162,13 @@ export function PlanRegistration(){
                 <PlanDetailRegistration />
                 
                 
-                <button className= 'saveBttn' type="submit">Guardar</button>
+                <button className= 'saveBttn' type="submit" style={{marginBottom:'15px'}}>Guardar</button>
                 
             </form>
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
             </div>
-
-            </div>
-            
             <div className='circle-clients'> </div>
         
             </div>
