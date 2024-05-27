@@ -4,6 +4,8 @@ import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import { TextField , Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import PlanService from '../service/PlanService';
+import DestinationService from '../service/DestinationService';
 import ClientService from '../service/ClientService';
 import moment from 'moment';
 import  {useState, useEffect} from 'react';
@@ -13,10 +15,16 @@ import AddIcon from '@mui/icons-material/Add';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { request, getUserId} from '../axios_helper';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 export function PlanRegistration(){
 
+    const userId = getUserId();
+
+    const [planId, setPlanId] = useState( )
+    const [detailId, setDetailId] = useState( )
     const [code, setCode] = useState('')
     const [description, setDescription] = useState('')
     const [name, setName] = useState('')
@@ -24,29 +32,46 @@ export function PlanRegistration(){
     const [requestDate, setRequestDate] = useState( )
     const [startDate, setStartDate] = useState( )
     const [endDate, setEndDate] = useState( )
-    const [cost, setCost] = useState( )
+    const [cost, setCost] = useState(0)
     const [clientId, setClientId] = useState( )
-    const [userId, setUserId] = useState( )
+    const [clients, setClients] = useState([])
+    const [destinations, setDestinations] = useState([])
 
     const [inputFields, setInputFields] = useState([
-        {food:false,lodging:false, transport:false, transfers:false, cost:'', destinationId:'', modifyDate: new Date().toDateString(),  daysNum:'', nightsNum:''}
+        {food:'off',loadging:'off', transport:'off', transfers:'off', cost:0, destinationId:null, modifyDate: new Date(Date.now()).toISOString(),  daysNum:'', nightsNum:''}
     ]);
+
+    const defaultPropsClients = {
+        options: clients,
+        getOptionLabel: (option) => option.name,
+    };
+
+    const defaultPropsDestinations = {
+        options: destinations,
+        getOptionLabel: (option) => option.name,
+    };
 
 
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const [idTypes,setIdTypes] = useState([])
     const regex = /[^a-zA-Z\s]/
 
 
     useEffect(() => {
 
-        setInputFields([{food:false,lodging:false, transport:false, transfers:false, cost:'', destinationId:'', modifyDate: new Date().toDateString(),  daysNum:'', nightsNum:''}])
+        setInputFields([{food:'off',loadging:'off', transport:'off', transfers:'off', cost:0, destinationId:null, modifyDate: new Date(Date.now()).toISOString(),  daysNum:'', nightsNum:''}])
 
-        ClientService.getIdTypes().then((response) => {
-            setIdTypes(response);
-            console.log(idTypes)
-        });  
+        ClientService.getClients().then((response) => {
+            setClients(response);
+            console.log(clients)
+        });
+
+        DestinationService.getDestinations().then((response) => {
+            setDestinations(response);
+            console.log(destinations)
+        });
+
+        setRequestDate(new Date(Date.now()).toISOString())
     }, []);
 
     
@@ -57,9 +82,16 @@ export function PlanRegistration(){
         console.log(inputFields)
     };
 
+    const handleChangeInputDestination = (index, event,newValue) => {
+        const values = [...inputFields];
+        values[index]['destinationId'] = newValue;
+        setInputFields(values);
+        console.log(inputFields)
+    };
+
     const handleAddFields = () => {
-        setInputFields([...inputFields, {food:false,lodging:false, transport:false, transfers:false, cost:'', destinationId:'', modifyDate: new Date().toDateString(),  daysNum:'', nightsNum:''}]);
-      };
+        setInputFields([...inputFields, {food:'off',loadging:'off', transport:'off', transfers:'off',cost:0, destinationId:null, modifyDate:new Date(Date.now()).toISOString(),  daysNum:'', nightsNum:''}]);
+    };
     
     const handleRemoveFields = (index) => {
     const values = [...inputFields];
@@ -67,32 +99,82 @@ export function PlanRegistration(){
     setInputFields(values);
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
+        
+        let finalCost = 0;
+        let detailCost = 0;
+        const additionalPrice= 100;
 
-        console.log(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId, userId) 
+        for (let i = 0; i < inputFields.length; i++) {
+            detailCost = 0;
 
-        const timeDiff = endDate.diff(startDate, 'days')
+            detailCost = detailCost +  inputFields[i].destinationId.price
 
+            if (inputFields[i].loadging == "on" ){
+                detailCost = detailCost + additionalPrice;
+            }
+    
+            if (inputFields[i].transport == "on" ){
+                detailCost = detailCost + additionalPrice;
+            }
+            if (inputFields[i].food == "on" ){
+                detailCost = detailCost + additionalPrice;
+            }
+            if (inputFields[i].transfers == "on" ){
+                detailCost = detailCost + additionalPrice;
+            }
+
+            inputFields[i].cost = detailCost;
+
+            finalCost = finalCost + detailCost;
+        }
+
+        setCost(finalCost)
+
+        console.log(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId, userId)
 
         if(regex.test(name)){
             setErrorMessage('El nombre no puede contener números o caracteres especiales.');
 
-        }else if(timeDiff < 1){
-            setErrorMessage('Fecha erronea');
-
         }else{
-            ClientService.registerClient(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId, userId).then(
-                (response) => {
-    
-                    navigate('/home');
-    
-                }).catch(
-                (error) => {
-                    
-            });
-        }
 
+            let plan = 0;
+            let detail=0;
+
+            PlanService.registerPlan(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId.id, userId).then(
+                (response) => {
+                    plan= response.id;
+                    console.log(plan)
+
+                    for (let i = 0; i < inputFields.length; i++) {
+
+                        PlanService.registerDetails(inputFields[i].food,inputFields[i].loadging, inputFields[i].transport, 
+                            inputFields[i].transfers, inputFields[i].cost, inputFields[i].destinationId.id, inputFields[i].modifyDate,  
+                            inputFields[i].daysNum, inputFields[i].nightsNum).then(
+                            (response) => {
+                                detail=response.id;
+                                console.log(detail)
+
+                                PlanService.registerPlanDetails(plan,detail).then(
+                                    (response) => {
+                                    }).catch(
+                                    (error) => {   
+                                });
+
+
+                            }).catch(
+                            (error) => {   
+
+                        });
+        
+                        
+                    }
+                }).catch(
+                (error) => {   
+            });
+            navigate("/home")
+        }  
     };
 
     const handleGoBackClick = async(e) => {
@@ -114,9 +196,9 @@ export function PlanRegistration(){
 
         <div className='content'>
         
-            <div className='formDiv' style={{height:'auto', display: 'flex', flexDirection:'column'}}>
-            <form onSubmit={handleSubmit} className='form' style={{width:'70%', height:'100%', display:'flex'}}>
-            <h2>Registro de cliente</h2>
+            <div className='formDivPlan'>
+            <form onSubmit={handleSubmit} className='form'>
+            <h2>Registro del plan</h2>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField className='textForm'
                         type="text"
@@ -161,6 +243,19 @@ export function PlanRegistration(){
                         fullWidth
                         required
                     />
+
+                <Autocomplete  sx={{marginBottom: 4}}
+                        {...defaultPropsClients}
+                        id="controlled-demo"
+                        value={clientId}
+                        onChange={(event, newValue) => {
+                        setClientId(newValue);
+                        }}
+                        renderInput={(params) => (
+                        <TextField {...params} label="Cliente" />
+                        )}
+                    />
+                
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
 
                     <TextField className='textForm'
@@ -197,16 +292,14 @@ export function PlanRegistration(){
 
                         <h2>Registro de Detalles</h2>
 
-                        <TextField sx={{marginBottom: 4}}
-                        name="destinationId"
-                        type="text"
-                        variant='outlined'
-                        color='secondary'
-                        label="Destino"
-                        onChange={(event) => handleChangeInput(index, event)}
-                        value={inputField.destinationId}
-                        fullWidth
-                        required
+                        <Autocomplete  sx={{marginBottom: 4}}
+                            {...defaultPropsDestinations}
+                            name="destinationId"
+                            value={inputField.destinationId}
+                            onChange={(event, newValue) => handleChangeInputDestination(index, event,newValue)}
+                            renderInput={(params) => (
+                            <TextField {...params} label="Destino" />
+                            )}
                         />
 
                         <FormLabel component="legend">Servicios</FormLabel>

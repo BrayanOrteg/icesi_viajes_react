@@ -106,18 +106,24 @@ input[type=number] {
     font-family: 'Rubik';
     font-size: 15px;
   }
-.formDiv {
-  background-color: #FAF9F9;
-  height: 100%;
-  width: 100%;
-  
-}
 
-.form {
-  width: 100%; 
-  display: flex;
-  flex-direction: column;
-}
+  .formDivPlan {
+    background-color: #FAF9F9;
+    height: 80%;
+    width: 60%;
+    overflow-y:scroll;
+    z-index: 1;
+    border-radius: 3%;
+  }
+
+  .form {
+    width: 100%; 
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    padding-bottom: 5%;
+  }
 
 
   .saveBttn {
