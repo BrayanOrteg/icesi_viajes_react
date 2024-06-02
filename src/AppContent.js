@@ -6,22 +6,24 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from './loginComponent/Login';
 import Home from './homeComponent/Home';
 
-import Client from './clientComponent/Client';
-import Clients from './clientsComponent/Clients';
-import ClientEdit from './clientEditComponent/ClientEdit';
-import ClientRegistration from './clientRegistrationComponent/ClientRegistration';
+import Client from './client/clientComponent/Client';
+import Clients from './client/clientsComponent/Clients';
+import ClientEdit from './client/clientEditComponent/ClientEdit';
+import ClientRegistration from './client/clientRegistrationComponent/ClientRegistration';
 
-import Employee from './employeeComponent/Employee';
-import Employees from './employeesComponent/Employees';
-import EmployeeRegistration from './employeeRegistrationComponent/EmployeeRegistration';
-import EmployeeEdit from './employeeEditComponet/employeeEdit';
+import Employee from './employee/employeeComponent/Employee';
+import Employees from './employee/employeesComponent/Employees';
+import EmployeeRegistration from './employee/employeeRegistrationComponent/EmployeeRegistration';
+import EmployeeEdit from './employee/employeeEditComponet/employeeEdit';
 
-import Destinations from './destinationsComponent/Destinations';
-import Destination from './destinationComponent/Destination';
-import DestinationRegistration from './destinationRegistrationComponent/DestinationRegistration';
-import DestinationEdit from './destinationEditComponent/DestinationEdit';
+import Destinations from './destination/destinationsComponent/Destinations';
+import Destination from './destination/destinationComponent/Destination';
+import DestinationRegistration from './destination/destinationRegistrationComponent/DestinationRegistration';
+import DestinationEdit from './destination/destinationEditComponent/DestinationEdit';
 
-import PlanRegistration from './planRegistrationComponent/PlanRegistration';
+import PlanRegistration from './plan/planRegistrationComponent/PlanRegistration';
+import Plans from './plan/plansComponent/Plans';
+import Plan from './plan/planView/Plan';
 
 export function App() {
 
@@ -30,7 +32,7 @@ export function App() {
     const onRole = (inputRole) => {
 
         setRole(inputRole)
-        console.log(inputRole)
+        console.log(inputRole) 
     };
 
     return (
@@ -66,8 +68,11 @@ export function App() {
 
                 <Route exact path="/destination/edit" element={role === "ADMIN" ? (<DestinationEdit/>) : (<Navigate replace to={"/"} />)}/>
 
+                <Route exact path="/plans" element={role === "ADMIN" ? (<Plans/>) : (<Navigate replace to={"/"} />)}/>
+
                 <Route exact path="/plan/registration" element={role === "ADMIN" ? (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
+                <Route exact path="/plan" element={role === "ADMIN" ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
             </Routes>
         </BrowserRouter>
         </>

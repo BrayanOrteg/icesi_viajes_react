@@ -90,12 +90,12 @@ export default function SideBar() {
                         <ListItemText primary={"Analíticas"} />
                     </ListItemButton>
                 </ListItem>
-                <ListItem style={{paddingTop:"10%"}} onClick={() => navigate('/plan/registration')}>
+                <ListItem style={{paddingTop:"10%"}} onClick={() => navigate('/plans')}>
                     <ListItemButton>
                         <ListItemIcon>
                             <BookmarkAddIcon sx={{color:"white"}}/>
                         </ListItemIcon>
-                        <ListItemText primary={"Añadir Reserva"} />
+                        <ListItemText primary={"Planes"} />
                     </ListItemButton>
                 </ListItem>
             </List>

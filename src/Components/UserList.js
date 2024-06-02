@@ -62,7 +62,9 @@ export default function UserList({clients,card}) {
           navigate('/employee/registration')
         } else if (card==='destinationCard') {
           navigate('/destination/registration')
-      }
+        } else if (card=== 'planCard'){
+          navigate('/plan/registration')
+        }
     }
 
       

@@ -22,6 +22,10 @@ class ClientService{
     getIdTypes(){
         return request("GET","api/v1/idTypes/all",{}).then((response => response.data));
     }
+
+    getClient(id){
+        return request("POST","api/v1/clients/get", id).then((response => response.data));
+    }
 }
 
 

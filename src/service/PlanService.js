@@ -13,6 +13,14 @@ class PlanService{
     registerPlanDetails(planId, detailId){
         return request("POST","api/v1/plans/createplandatails",{id: Date.now(), planDetail:detailId, plan:planId}).then((response => response.data));
     }
+
+    getPlans(){
+        return request("GET","api/v1/plans/all",{}).then((response => response.data));
+    }
+
+    deletePlan(id){
+        return request("POST", "api/v1/plans/deletePlan", id).then((response => response.data));
+    }
 }
 
 
