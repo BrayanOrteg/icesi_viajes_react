@@ -13,6 +13,26 @@ class PlanService{
     registerPlanDetails(planId, detailId){
         return request("POST","api/v1/plans/createplandatails",{id: Date.now(), planDetail:detailId, plan:planId}).then((response => response.data));
     }
+
+    getSalesNum(){
+        return request("GET","api/v1/plans/salesweek",{}).then((response => response.data));
+    }
+
+    getClientsNum(){
+        return request("GET","api/v1/plans/clientsnum",{}).then((response => response.data));
+    }
+
+    getMoney(){
+        return request("GET","api/v1/plans/money",{}).then((response => response.data));
+    }
+
+    getTopTypes(){
+        return request("GET","api/v1/plans/topTypes",{}).then((response => response.data));
+    }
+
+    getTopDestinations(){
+        return request("GET","api/v1/plans/topDestinations",{}).then((response => response.data));
+    }
 }
 
 
