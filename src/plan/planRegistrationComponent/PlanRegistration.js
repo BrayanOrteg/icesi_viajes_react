@@ -173,7 +173,7 @@ export function PlanRegistration(){
                 }).catch(
                 (error) => {   
             });
-            navigate("/home")
+            navigate("/plans")
         }  
     };
 
