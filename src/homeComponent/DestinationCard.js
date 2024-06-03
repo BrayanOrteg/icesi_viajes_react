@@ -25,7 +25,7 @@ export function DestinationCard({destination}){
 <Card sx={{ width:"80%", height:"50%"}}>
       <CardMedia
         sx={{ height: 140 }}
-        image="https://static.vecteezy.com/vite/assets/photo-masthead-375-b8ae1548.webp"
+        image={destination.image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

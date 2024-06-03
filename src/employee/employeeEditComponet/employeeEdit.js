@@ -25,16 +25,18 @@ export function EmployeeEdit(){
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
+    const [url,setUrl] = useState(clientObj.image)
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(userName, password, name, id,role) 
+        console.log(userName, password, name, id,role,url) 
 
         if(regex.test(name) || regex.test(role)){
             setErrorMessage('El nombre y el rol no puede contener números o caracteres especiales.');
 
         }else{
-            EmployeeService.updateEmployee(userName, password, name, id,role, nationalID).then(
+            EmployeeService.updateEmployee(userName, password, name, id,role, nationalID,url).then(
                 (response) => {
     
                     navigate('/employees');

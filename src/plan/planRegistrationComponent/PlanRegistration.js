@@ -105,13 +105,10 @@ export function PlanRegistration(){
         return date;
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        let finalCost = 0;
+    const updateCost = () => {
+        let finalCost = cost;
         let detailCost = 0;
         const additionalPrice= 100;
-
         for (let i = 0; i < inputFields.length; i++) {
             detailCost = 0;
 
@@ -134,9 +131,16 @@ export function PlanRegistration(){
             inputFields[i].cost = detailCost;
 
             finalCost = finalCost + detailCost;
-        }
 
-        setCost(finalCost)
+            setCost(finalCost)
+        }
+    }
+    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        const typesData =  await updateCost();
+
 
         console.log(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId, userId)
 

@@ -36,7 +36,7 @@ const  DestinationCard = ({client}) => {
             >
                 <Grid container wrap="nowrap" spacing={2} alignItems="center">
                 <Grid item>
-                    <Avatar src={userPhoto}></Avatar>
+                    <Avatar src={client.image}></Avatar>
                 </Grid>
                 <Grid item xs zeroMinWidth>
                     <Typography noWrap sx={{ fontWeight: 'bold' }}>{client.name}</Typography>

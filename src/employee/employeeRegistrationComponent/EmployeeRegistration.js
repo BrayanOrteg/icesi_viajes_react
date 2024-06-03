@@ -7,6 +7,7 @@ import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, Form
 import { useNavigate } from 'react-router-dom';
 import EmployeeService from '../../service/EmployeeService';
 import moment from 'moment';
+import axios from "axios"
 
 export function EmployeeRegistration(){
 
@@ -19,16 +20,18 @@ export function EmployeeRegistration(){
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
+    const [url,setUrl] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png')
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(userName, password, name, id,role) 
+        console.log(userName, password, name, id,role,url) 
 
         if(regex.test(name)){
             setErrorMessage('El nombre no puede contener números o caracteres especiales.');
 
         }else{
-            EmployeeService.registerEmployee(userName, password, name, id,role).then(
+            EmployeeService.registerEmployee(userName, password, name, id,role,url).then(
                 (response) => {
     
                     navigate('/employees');
@@ -43,9 +46,33 @@ export function EmployeeRegistration(){
     const handleGoBackClick = async(e) => {
         navigate('/employees')
     };
+
+    const changeUploadImage = async (e) => {
+
+        const config = {
+            headers: { "Content-Type": "multipart/form-data","X-Requested-With": "XMLHttpRequest" }
+        };
+
+        const file=e.target.files[0];
+
+
+        console.log(e);
+        console.log(file);
+        const data =new FormData();
+
+        data.append("file",file)
+        data.append("upload_preset","Presets_react")    
+
+        const response = await axios.post("https://api.cloudinary.com/v1_1/dcgdgnbj0/image/upload",data,config);
+
+        setUrl(response.data.secure_url)
+
+    };
+
+
     
     return (
-        <html className='client-html-body'>
+        <div className='container'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
@@ -53,12 +80,47 @@ export function EmployeeRegistration(){
             </button>
         </TopBar>
         <SideBar/>
-        <body className='client-html-body'>
+        <div className='content'>
 
         
         <div className='formDiv'>
             <h2>Registro de cliente</h2>
             <form onSubmit={handleSubmit}>
+
+            <Stack spacing={2} direction="row" sx={{marginBottom: 4, alignItems:"center"}}>
+
+                <div >
+                    <img  className='circleImage' src={url}  alt="Avatar" />
+                </div> 
+
+
+                <button  style={{
+                fontFamily: 'Rubik',
+                display: 'flex',
+                backgroundColor: '#38AC91',
+                borderRadius: '10px',
+                border: 'none',
+                fontSize: '15px',
+                color: '#FFFFFF',
+                width: '15%',
+                height: '8%',
+                textAlign: 'center',
+                textDecoration: 'none',
+                marginTop:'0%',
+                padding:'0%'
+                }}type="button" className='buttonFile'>
+
+                    <label for="upload-photo" className='upload-label'>Subir Imagen</label>
+                    <input
+                    onChange={changeUploadImage}
+                    accept="image/*"
+                    type="file"
+                    id="upload-photo"
+                    hidden
+                    />
+                </button>
+
+                </Stack>
                 <TextField
                     type="text"
                     variant='outlined'
@@ -137,8 +199,8 @@ export function EmployeeRegistration(){
             </div>
             
             <div className='circle-clients'> </div>
-        </body>
-        </html>
+        </div>
+        </div>
         
     );
     

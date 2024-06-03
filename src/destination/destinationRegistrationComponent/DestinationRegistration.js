@@ -70,7 +70,7 @@ export function DestinationRegistration(){
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes) 
+        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes,url) 
 
 
         if(regex.test(name)){
@@ -78,7 +78,7 @@ export function DestinationRegistration(){
 
         }else{
 
-            DestinationService.registerDestination(code, name,description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes).then(
+            DestinationService.registerDestination(code, name,description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes,url).then(
                 (response) => {
     
                     navigate('/destinations');
@@ -194,10 +194,6 @@ export function DestinationRegistration(){
                     hidden
                     />
                 </button>
-
-               
-
-                        
 
             </Stack>
 

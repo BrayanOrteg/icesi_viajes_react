@@ -31,12 +31,14 @@ export function ClientEdit(){
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
+    const [url,setUrl] = useState(clientObj.image)
+
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(firstName, lastName, id, dateOfBirth, phone, sex,  idType) 
+        console.log(firstName, lastName, id, dateOfBirth, phone, sex,  idType,url) 
 
         const adult = moment().diff(dateOfBirth, 'years')
 
@@ -48,7 +50,7 @@ export function ClientEdit(){
             setErrorMessage('Necesita tener más de 18 años.');
 
         }else{
-            ClientService.updateClient(clientObj.id, firstName, lastName, id, dateOfBirth, phone, sex, idType).then(
+            ClientService.updateClient(clientObj.id, firstName, lastName, id, dateOfBirth, phone, sex, idType,url).then(
                 (response) => {
     
                     navigate('/clients');

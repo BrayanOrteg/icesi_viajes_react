@@ -10,12 +10,12 @@ class DestinatioService{
         return request("POST","api/v1/destinations/delete", id).then((response => response.data));
     }
 
-    registerDestination(code, name, description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes){
-        return request("POST","api/v1/destinations/create",{id: Date.now(), code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active', image: null, selectedTypes: selectedTypes}).then((response => response.data));
+    registerDestination(code, name, description, price, byLandLabel, bySeaLabel, byAirLabel, selectedTypes,url){
+        return request("POST","api/v1/destinations/create",{id: Date.now(), code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active', image: null, selectedTypes: selectedTypes, image:url}).then((response => response.data));
     }
 
-    updateDestination(id, code, name, description, price, byLandLabel, bySeaLabel, byAirLabel){
-        return request("POST", "api/v1/destinations/update",{id: id, code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active', image: null}).then((response => response.data));
+    updateDestination(id, code, name, description, price, byLandLabel, bySeaLabel, byAirLabel,url){
+        return request("POST", "api/v1/destinations/update",{id: id, code:code, name:name, description:description, price:price, byLand:byLandLabel, bySea:bySeaLabel, byAir:byAirLabel, status: 'Active',image:url}).then((response => response.data));
     }
 
     getDestinationTypes(){
