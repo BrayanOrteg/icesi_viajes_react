@@ -99,6 +99,12 @@ export function PlanRegistration(){
     setInputFields(values);
     };
 
+    const addOneDay = (dateString) => {
+        const date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
+        return date;
+    };
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         
@@ -142,7 +148,10 @@ export function PlanRegistration(){
             let plan = 0;
             let detail=0;
 
-            PlanService.registerPlan(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId.id, userId).then(
+            const adjustedStartDate = addOneDay(startDate).toISOString().split('T')[0];
+            const adjustedEndDate = addOneDay(endDate).toISOString().split('T')[0];
+
+            PlanService.registerPlan(code, description, name, numPeople, requestDate, adjustedStartDate,  adjustedEndDate, cost, clientId.id, userId).then(
                 (response) => {
                     plan= response.id;
                     console.log(plan)
