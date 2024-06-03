@@ -19,6 +19,7 @@ import { request, getUserId} from '../../axios_helper';
 import Autocomplete from '@mui/material/Autocomplete';
 
 
+
 export function PlanRegistration(){
 
     const userId = getUserId();
@@ -55,6 +56,7 @@ export function PlanRegistration(){
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
+    const today = new Date();
 
 
     useEffect(() => {
@@ -132,7 +134,10 @@ export function PlanRegistration(){
 
             finalCost = finalCost + detailCost;
 
-            setCost(finalCost)
+            console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            console.log(finalCost)
+
+            return finalCost
         }
     }
     
@@ -141,13 +146,25 @@ export function PlanRegistration(){
         
         const typesData =  await updateCost();
 
+        console.log("ADIOSSSSSSSSSSSSSSSS")
+        console.log(typesData)
+        console.log(today)
+        console.log(new Date(startDate))
 
-        console.log(code, description, name, numPeople, requestDate, startDate,  endDate, cost, clientId, userId)
+
+        console.log(code, description, name, numPeople, requestDate, startDate,  endDate, typesData, clientId, userId)
 
         if(regex.test(name)){
             setErrorMessage('El nombre no puede contener números o caracteres especiales.');
 
-        }else{
+        } else if(addOneDay(startDate) < today){
+            setErrorMessage('La fecha inicial no puede ser menor a la fecha de hoy.');
+
+        } else if(addOneDay(endDate) <= addOneDay(startDate)){
+            setErrorMessage('La fecha final no puede ser menor o igual a la fecha inicial.');
+
+        }
+        else{
 
             let plan = 0;
             let detail=0;
@@ -155,7 +172,7 @@ export function PlanRegistration(){
             const adjustedStartDate = addOneDay(startDate).toISOString().split('T')[0];
             const adjustedEndDate = addOneDay(endDate).toISOString().split('T')[0];
 
-            PlanService.registerPlan(code, description, name, numPeople, requestDate, adjustedStartDate,  adjustedEndDate, cost, clientId.id, userId).then(
+            PlanService.registerPlan(code, description, name, numPeople, requestDate, adjustedStartDate,  adjustedEndDate, typesData, clientId.id, userId).then(
                 (response) => {
                     plan= response.id;
                     console.log(plan)

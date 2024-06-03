@@ -1,5 +1,5 @@
 import React from 'react';
-import './ClientRegistration.css';
+import "./ClientRegistration.css"
 import SideBar from '../../Components/SideBar';
 import TopBar from '../../Components/TopBar';
 import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
@@ -91,7 +91,7 @@ export function ClientRegistration(){
 
 
     return (
-        <div className='container'>
+        <div className='container-registerClient'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
@@ -241,8 +241,9 @@ export function ClientRegistration(){
 
             </div>
             
-            <div className='circle-clients'> </div>
+            
             </div>
+            <div className='circle-clients'> </div>
         </div>
         
     );
