@@ -13,6 +13,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 
+
 export default function Plan() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,17 +35,8 @@ export default function Plan() {
     navigate('/plans');
   };
 
-  const startDate = new Date(clientObj.tripStartDate).toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-
-  const endDate = new Date(clientObj.tripEndDate).toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
+  const startDate = new Date(clientObj.tripStartDate).toISOString().split('T')[0];
+  const endDate = new Date(clientObj.tripEndDate).toISOString().split('T')[0];
 
   return (
     <div className='container'>
@@ -132,7 +124,7 @@ export default function Plan() {
         <Card className='cardPlan'>
           <CardContent>
             <Typography className='textCard-Attendants' style={{ fontSize: '18px', fontFamily: 'Rubik' }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {clientObj.description}
             </Typography>
           </CardContent>
         </Card>

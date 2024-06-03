@@ -5,6 +5,9 @@ import TopBar from '../Components/TopBar';
 import UserCard from '../Components/UserCard';
 import MediaCover from '../Components/MediaCover';
 import ClientService from '../service/ClientService';
+import Statistics from './Statistics';
+import Chart from './Chart';
+import Cards from './Cards';
 
 
 export default class Home extends React.Component {
@@ -35,7 +38,23 @@ export default class Home extends React.Component {
           <TopBar></TopBar>
           <SideBar clientsClick={this.clientsClick}/>
           <body className='home-html-body'>
-              <div className='circle-home'> </div>
+
+          
+          <div className='contentDiv'> 
+
+            <div className='firstRowDiv'> 
+
+              <Statistics/>
+              <Chart/>
+
+            </div>
+
+              <Cards/>
+            
+
+          </div>
+
+            <div className='circle-home'> </div>
           </body>
         </html>
         
