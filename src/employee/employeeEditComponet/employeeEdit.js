@@ -23,7 +23,7 @@ export function EmployeeEdit(){
     const [id, setId] = useState(clientObj.id)
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const regex = /[^a-zA-Z\s]/
+    const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
     const handleSubmit = async (event) => {
         event.preventDefault();

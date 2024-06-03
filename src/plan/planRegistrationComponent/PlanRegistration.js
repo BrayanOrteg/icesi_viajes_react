@@ -54,7 +54,7 @@ export function PlanRegistration(){
 
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const regex = /[^a-zA-Z\s]/
+    const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
 
     useEffect(() => {
@@ -104,7 +104,7 @@ export function PlanRegistration(){
         date.setDate(date.getDate() + 1);
         return date;
     };
-    
+
     const handleSubmit = (event) => {
         event.preventDefault();
         
@@ -182,6 +182,9 @@ export function PlanRegistration(){
                 }).catch(
                 (error) => {   
             });
+
+            console.log("espero");
+
             navigate("/plans")
         }  
     };
@@ -220,7 +223,7 @@ export function PlanRegistration(){
                         required
                     />
                     <TextField className='textForm'
-                        type="text"
+                        type="number"
                         variant='outlined'
                         color='secondary'
                         label="Código"

@@ -20,7 +20,7 @@ export function ClientRegistration(){
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const [idTypes,setIdTypes] = useState([])
-    const regex = /[^a-zA-Z\s]/
+    const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
 
     useEffect(() => {

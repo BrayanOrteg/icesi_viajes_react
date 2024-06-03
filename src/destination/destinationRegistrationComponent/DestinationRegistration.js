@@ -36,7 +36,7 @@ export function DestinationRegistration(){
 
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const regex = /[^a-zA-Z\s]/
+    const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
     const handleChange = (event) => {
         const {

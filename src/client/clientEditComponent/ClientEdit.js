@@ -29,7 +29,7 @@ export function ClientEdit(){
     const [idType, setIdType] = useState(clientObj.typeNID)
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const regex = /[^a-zA-Z\s]/
+    const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
 
 
 
