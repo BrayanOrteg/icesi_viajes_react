@@ -85,7 +85,7 @@ export default function Client(){
 
                 <div className='photo-client'>
                     
-                    <Avatar src={userPhoto} style={{
+                    <Avatar src={clientObj.image} style={{
                         width: '160px',
                         height: '160px',
                         minWidth: '160px', 

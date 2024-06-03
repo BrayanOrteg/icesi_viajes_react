@@ -27,6 +27,7 @@ export function DestinationEdit(){
     const [code,setCode] = useState(clientObj.code)
     const [description, setDescription] = useState(clientObj.description)
     const [price, setPrice] = useState(clientObj.price)
+    const [url,setUrl] = useState(clientObj.image)
 
     const [byLandLabel, setByLandLabel] = useState(clientObj.byLand)
     const [bySeaLabel, setBySeaLabel] = useState(clientObj.bySea)
@@ -58,7 +59,7 @@ export function DestinationEdit(){
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel) 
+        console.log(code,name, description, price, byLandLabel, bySeaLabel, byAirLabel,url) 
 
 
         if(regex.test(name)){
@@ -66,7 +67,7 @@ export function DestinationEdit(){
 
         }else{
 
-            DestinationService.updateDestination(clientObj.id,code, name,description, price, byLandLabel, bySeaLabel, byAirLabel).then(
+            DestinationService.updateDestination(clientObj.id,code, name,description, price, byLandLabel, bySeaLabel, byAirLabel,url).then(
                 (response) => {
     
                     navigate('/destinations');

@@ -1,15 +1,24 @@
-.client-html-body{
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #badfd7;
-    background-size: cover;
-    background-position: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
+
+.content {
+  margin-top: 60px; 
+  margin-left: 240px; 
+  padding: 20px;
+  background-color: #badfd7; 
+  width: calc(100% - 240px);
+  height: calc(100vh - 60px);
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -79,18 +88,25 @@ input[type=number] {
     font-size: 15px;
   }
 
-  .formDiv{
-    margin-top: 4%;
+  .formDivClient{
     background-color: #FAF9F9;
-    border-radius: 5%;
+    height: 80%;
+    width: 60%;
+    overflow-y:auto;
+    z-index: 1;
+    border-radius: 3%;
+    padding: 3%;
+  }
+
+  .form {
+    width: 100%; 
+    height: 90%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    height: 83%;
-    z-index: 1;
+    padding: 5%;
+    padding-bottom: 5%;
   }
+
 
   .saveBttn {
     font-family: 'Rubik';
