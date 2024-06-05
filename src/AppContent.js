@@ -25,11 +25,8 @@ import PlanRegistration from './plan/planRegistrationComponent/PlanRegistration'
 import Plans from './plan/plansComponent/Plans';
 import Plan from './plan/planView/Plan';
 
-<<<<<<< HEAD
 import Analytics from './analytics/Analytics';
-=======
 import {setUserRole} from './axios_helper';
->>>>>>> aabdc1867a0b314f88af4a4c5257e0c591746855
 
 export function App() {
 
@@ -79,13 +76,9 @@ export function App() {
 
                 <Route exact path="/plan/registration" element={["ADMIN", "AGENT"].includes(role) ?  (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
-<<<<<<< HEAD
                 <Route exact path="/plan" element={role === "ADMIN" ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
 
                 <Route exact path="/analytics" element={role === "ADMIN" ? (<Analytics/>) : (<Navigate replace to={"/"} />)}/>
-=======
-                <Route exact path="/plan" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Plan/>) : (<Navigate replace to={"/"} />)}/>
->>>>>>> aabdc1867a0b314f88af4a4c5257e0c591746855
             </Routes>
         </BrowserRouter>
         </>

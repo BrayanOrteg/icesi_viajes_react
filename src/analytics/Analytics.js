@@ -1,5 +1,6 @@
 import React from 'react';
 import './Analytics.css'
+import PlanService from '../service/PlanService';
 import SideBar from '../Components/SideBar';
 import TopBar from '../Components/TopBar';
 import { useLocation } from "react-router-dom";
@@ -11,11 +12,27 @@ import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
+import EmployeeTable from './EmployeeTable';
+
 
 
 export default function Analytics() {
   const navigate = useNavigate();
 
+  const [planInfo, setPlanInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const plans = await PlanService.getPlans();
+        setPlanInfo(plans);
+      } catch (error) {
+        console.error('Error fetching plans:', error);
+      }
+    };
+
+    fetchPlans();
+  }, []); 
 
 
   const handleGoBackClick = async (e) => {
@@ -36,6 +53,12 @@ export default function Analytics() {
         <div style={{ width: '60%', paddingLeft: '2px', alignItems: 'start', justifyContent: 'flex-start', display: 'flex' }}>
           <h2 className='tittle-plan'>Analíticas</h2>
         </div>
+
+        <div style={{width: '60%'}}> 
+        <EmployeeTable data={planInfo} />
+        </div>
+        
+        
 
       </div>
       <div className='circle-clients'> </div>

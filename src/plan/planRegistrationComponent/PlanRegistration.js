@@ -200,13 +200,14 @@ export function PlanRegistration(){
         
                         
                     }
+                    navigate("/plans")
                 }).catch(
                 (error) => {   
             });
 
             console.log("espero");
 
-            navigate("/plans")
+
         }  
     };
 
