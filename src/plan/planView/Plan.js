@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
+import {getUserRole} from '../../axios_helper';
 
 
 export default function Plan() {
@@ -19,6 +20,7 @@ export default function Plan() {
   const location = useLocation();
   let clientObj = location.state.clientObj;
   let clientInfo = location.state.clientInfo;
+  const [role, setRole] = useState(getUserRole());
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -128,10 +130,11 @@ export default function Plan() {
             </Typography>
           </CardContent>
         </Card>
-
+        {['ADMIN', 'AGENT'].includes(role) && (
         <button className= 'button-deleteClient' style={{width: '10%'}} onClick= {handleDelete}>
             <DeleteIcon sx={{color:'white'}}/>
         </button>
+        )}
       </div>
       <div className='circle-clients'> </div>
     </div>

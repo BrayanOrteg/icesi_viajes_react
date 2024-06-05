@@ -11,12 +11,14 @@ import userPhoto from '../../Commons/exampleUser.jpg';
 import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
+import {getUserRole} from '../../axios_helper';
 
 export default function Client(){
 
     const [seaCheck, setSeaCheck] = useState(false);
     const [airCheck, setAirCheck] = useState(false);
     const [landCheck, setLandCheck] = useState(false);
+    const [role, setRole] = useState(getUserRole());
     
     const navigate = useNavigate();
 
@@ -167,17 +169,24 @@ export default function Client(){
                     }}></Avatar>
                     <span className="name-client">{clientObj.name}</span>  
 
-                    <div className='container-buttons'>
-
-                        <button className= 'button-deleteClient' style={{width: '10%', marginRight:'10%'}} onClick= {handleClick}>
-                        <DeleteIcon sx={{color:'white'}}/>
+                    {['ADMIN', 'AGENT'].includes(role) && (
+                        <div className='container-buttons'>
+                        <button 
+                            className='button-deleteClient' 
+                            style={{ width: '10%', marginRight: '10%' }} 
+                            onClick={handleClick}
+                        >
+                            <DeleteIcon sx={{ color: 'white' }} />
                         </button>
-
-                        <button className= 'button-editClient' style={{width: '10%',  marginRight:'10%'}} onClick= {handleEditClick}>
-                        <EditIcon sx={{color:'white'}}/>
+                        <button 
+                            className='button-editClient' 
+                            style={{ width: '10%', marginRight: '10%' }} 
+                            onClick={handleEditClick}
+                        >
+                            <EditIcon sx={{ color: 'white' }} />
                         </button>
-
-                    </div> 
+                        </div>
+                    )}
 
                  </div>
 
