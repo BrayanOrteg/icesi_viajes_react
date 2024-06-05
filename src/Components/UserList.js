@@ -15,6 +15,7 @@ import { Grid } from '@mui/joy';
 import { Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {getUserRole} from '../axios_helper';
 
 export default function UserList({clients,card}) {
 
@@ -23,6 +24,8 @@ export default function UserList({clients,card}) {
     const [userdata, setUserdata]= useState(filterdata);
     const navigate = useNavigate();
     const inputRef = useRef(null);
+
+    const [role, setRole] = useState(getUserRole());
 
     useEffect(() => {
       setFilterdata(Object.values({clients})[0])
@@ -94,17 +97,22 @@ export default function UserList({clients,card}) {
                     />
                     </Grid>
                     <Grid item>
-                      <Button onClick={() => handleEdit()} sx={{
-                        width:'fit-content', 
-                        height:'fit-content',
-                        borderRadius:10,
+                    {['ADMIN', 'AGENT'].includes(role) && (
+                    <Button
+                      onClick={() => handleEdit()}
+                      sx={{
+                        width: 'fit-content',
+                        height: 'fit-content',
+                        borderRadius: 10,
                         '&:hover': {
-                            color: "white",
-                            backgroundColor:'#46ad95'
-                          }
-                        }}>
-                        <AddCircleIcon sx={{color:'white'} }/>
-                      </Button> 
+                          color: 'white',
+                          backgroundColor: '#46ad95'
+                        }
+                      }}
+                    >
+                      <AddCircleIcon sx={{ color: 'white' }} />
+                    </Button>
+                  )}
                     </Grid>
                   </Grid>
                 </StyledTableCell>

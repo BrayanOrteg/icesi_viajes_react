@@ -25,6 +25,8 @@ import PlanRegistration from './plan/planRegistrationComponent/PlanRegistration'
 import Plans from './plan/plansComponent/Plans';
 import Plan from './plan/planView/Plan';
 
+import {setUserRole} from './axios_helper';
+
 export function App() {
 
     const [role, setRole] = useState('');
@@ -32,6 +34,7 @@ export function App() {
     const onRole = (inputRole) => {
 
         setRole(inputRole)
+        setUserRole(inputRole)
         console.log(inputRole) 
     };
 
@@ -42,15 +45,15 @@ export function App() {
 
                 <Route path="/" element={<Login role={onRole} />} />
 
-                <Route exact path="/home" element={role === "ADMIN" ? (<Home/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/home" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ? (<Home/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/clients" element={role === "ADMIN" ? (<Clients/>) : (<Navigate replace to={"/"} />)} />
+                <Route exact path="/clients" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ? (<Clients/>) : (<Navigate replace to={"/"} />)} />
 
-                <Route exact path="/client" element={role === "ADMIN" ? (<Client/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/client" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Client/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/client/registration" element={role === "ADMIN" ? (<ClientRegistration/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/client/registration" element={["ADMIN", "AGENT"].includes(role) ? (<ClientRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/client/edit" element={role === "ADMIN" ? (<ClientEdit/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/client/edit"element={["ADMIN", "AGENT"].includes(role) ?  (<ClientEdit/>) : (<Navigate replace to={"/"} />)}/>
 
                 <Route exact path="/employee" element={role === "ADMIN" ? (<Employee/>) : (<Navigate replace to={"/"} />)}/>
 
@@ -60,19 +63,19 @@ export function App() {
 
                 <Route exact path="/employee/edit" element={role === "ADMIN" ? (<EmployeeEdit/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/destinations" element={role === "ADMIN" ? (<Destinations/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/destinations" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Destinations/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/destination" element={role === "ADMIN" ? (<Destination/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/destination" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Destination/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/destination/registration" element={role === "ADMIN" ? (<DestinationRegistration/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/destination/registration" element={["ADMIN", "AGENT"].includes(role) ?  (<DestinationRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/destination/edit" element={role === "ADMIN" ? (<DestinationEdit/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/destination/edit" element={["ADMIN", "AGENT"].includes(role) ?  (<DestinationEdit/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/plans" element={role === "ADMIN" ? (<Plans/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/plans" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Plans/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/plan/registration" element={role === "ADMIN" ? (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/plan/registration" element={["ADMIN", "AGENT"].includes(role) ?  (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/plan" element={role === "ADMIN" ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/plan" element={["ADMIN", "VIEWER", "AGENT"].includes(role) ?  (<Plan/>) : (<Navigate replace to={"/"} />)}/>
             </Routes>
         </BrowserRouter>
         </>

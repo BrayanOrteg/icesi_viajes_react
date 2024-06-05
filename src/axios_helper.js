@@ -31,6 +31,15 @@ export const getUserId = () => {
   return window.localStorage.getItem('user_id');
 };
 
+export const setUserRole = (role) => {
+ 
+  window.localStorage.setItem("role", role);
+};
+
+export const getUserRole = () => {
+  return window.localStorage.getItem('role');
+};
+
 axios.defaults.baseURL = 'http://localhost:9091';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

@@ -16,12 +16,15 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import Logo from '../Commons/logo_icesi.png'
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
+import {getUserRole} from '../axios_helper';
+import  {useState} from 'react';
 
 const drawerWidth = 240;
 
 export default function SideBar() {
     
     const navigate = useNavigate();
+    const [role, setRole] = useState(getUserRole());
 
     return (
         <Box sx={{ display: 'flex', zIndex: 1, color: 'white' }}>
@@ -49,7 +52,7 @@ export default function SideBar() {
 
             <List>
 
-            <ListItem>
+                <ListItem>
                     <ListItemButton onClick={() => navigate('/home')}>
                         <ListItemIcon>
                             <HomeIcon sx={{color:"white"}}/>
@@ -74,14 +77,16 @@ export default function SideBar() {
                         <ListItemText primary={"Clientes"} />
                     </ListItemButton>
                 </ListItem>
-                <ListItem style={{paddingTop:"10%"}}>
+                {['ADMIN'].includes(role) && (
+                    <ListItem style={{ paddingTop: "10%" }}>
                     <ListItemButton onClick={() => navigate('/employees')}>
                         <ListItemIcon>
-                            <BadgeIcon sx={{color:"white"}}/>
+                        <BadgeIcon sx={{ color: "white" }} />
                         </ListItemIcon>
                         <ListItemText primary={"Empleados"} />
                     </ListItemButton>
-                </ListItem>
+                    </ListItem>
+                )}
                 <ListItem style={{paddingTop:"10%"}}>
                     <ListItemButton>
                         <ListItemIcon>
