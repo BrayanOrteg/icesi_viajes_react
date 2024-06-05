@@ -25,6 +25,8 @@ import PlanRegistration from './plan/planRegistrationComponent/PlanRegistration'
 import Plans from './plan/plansComponent/Plans';
 import Plan from './plan/planView/Plan';
 
+import Analytics from './analytics/Analytics';
+
 export function App() {
 
     const [role, setRole] = useState('');
@@ -73,6 +75,8 @@ export function App() {
                 <Route exact path="/plan/registration" element={role === "ADMIN" ? (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
                 <Route exact path="/plan" element={role === "ADMIN" ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
+
+                <Route exact path="/analytics" element={role === "ADMIN" ? (<Analytics/>) : (<Navigate replace to={"/"} />)}/>
             </Routes>
         </BrowserRouter>
         </>

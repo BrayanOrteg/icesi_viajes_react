@@ -82,7 +82,7 @@ export default function SideBar() {
                         <ListItemText primary={"Empleados"} />
                     </ListItemButton>
                 </ListItem>
-                <ListItem style={{paddingTop:"10%"}}>
+                <ListItem style={{paddingTop:"10%"}} onClick={() => navigate('/analytics')}>
                     <ListItemButton>
                         <ListItemIcon>
                             <AnalyticsIcon sx={{color:"white"}}/>
