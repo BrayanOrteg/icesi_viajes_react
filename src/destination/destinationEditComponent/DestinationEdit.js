@@ -66,6 +66,10 @@ export function DestinationEdit(){
         if(regex.test(name)){
             setErrorMessage('El nombre no puede contener números o caracteres especiales.');
 
+        }else if (price<=0){
+
+            setErrorMessage('El precio debe ser mayor a 0');
+
         }else{
 
             DestinationService.updateDestination(clientObj.id,code, name,description, price, byLandLabel, bySeaLabel, byAirLabel,url).then(
@@ -128,7 +132,7 @@ export function DestinationEdit(){
 
         
         <div className='formDiv'>
-            <h2>Registro del destino</h2>
+            <h2>Edición del destino</h2>
             <form onSubmit={handleSubmit}>
 
             <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
@@ -144,7 +148,7 @@ export function DestinationEdit(){
                     />
 
                     <TextField  sx={{marginBottom: 2}}
-                        type="text"
+                        type="number"
                         variant='outlined'
                         color='secondary'
                         label="Código"
