@@ -14,13 +14,12 @@ import PlanService from '../service/PlanService';
 export function Statistics(){
 
     const style = {
-        py: 0,
         width: '100%',
-        maxWidth: 360,
-        borderRadius: 2,
+        height:'100%',
+        borderRadius: '5%',
         border: '1px solid',
         borderColor: 'divider',
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.paper'
     };
 
     const [sales, setSales] = useState("");
@@ -66,8 +65,9 @@ export function Statistics(){
   
     
     return (
-        <div className='StatisticsDiv'>
 
+        <div className='statisticsDiv'> 
+ 
             <List sx={style}>
 
                 <ListItem>
@@ -103,7 +103,6 @@ export function Statistics(){
                 </ListItem>
 
             </List>
-
         </div>
         
     );

@@ -85,7 +85,7 @@ export default function Client(){
         <SideBar/>
         <body className='client-html-body'>
             
-            <div className='container-client'>
+            <div className='container-destination'>
                 
                 <div className='personalInfo-client'>
 

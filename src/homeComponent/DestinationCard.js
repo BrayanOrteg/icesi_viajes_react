@@ -22,9 +22,9 @@ export function DestinationCard({destination}){
     return (
         <div className='cardDiv'>
 
-<Card sx={{ width:"80%", height:"50%"}}>
+<Card sx={{ width:"60%", height:"30%"}}>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 100}}
         image={destination.image}
       />
       <CardContent>

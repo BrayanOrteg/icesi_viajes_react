@@ -42,7 +42,6 @@ export function Cards(){
         destinations.map((destination) => (
 
             <DestinationCard  destination= {destination}/>
-            
         ))}
         
         </div>
