@@ -33,30 +33,37 @@ export default class Home extends React.Component {
   render(){
     
     return (
-        <html className='home-html-body'>
+        <div className='container-home '>
           <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
           <TopBar></TopBar>
-          <SideBar clientsClick={this.clientsClick}/>
-          <body className='home-html-body'>
-
-          
-          <div className='contentDiv'> 
+          <SideBar clientsClick={this.clientsClick}/> 
+          <div className='content'> 
 
             <div className='firstRowDiv'> 
 
-              <Statistics/>
-              <Chart/>
+              
+              <div className='topRowItemDiv'> 
+                <h2 className='title'>Estadísticas</h2>
+                <Statistics/>
+              </div>
+
+              <div className='topRowItemDiv'> 
+                <h2 className='title'>Tipos de destino populares</h2>
+                <Chart/>
+              </div>
 
             </div>
 
+            <div className='bottomRowItemDiv'> 
+              <h2 className='title'>Destinos populares</h2>
               <Cards/>
+            </div>
             
 
           </div>
 
             <div className='circle-home'> </div>
-          </body>
-        </html>
+        </div>
         
     );
   }

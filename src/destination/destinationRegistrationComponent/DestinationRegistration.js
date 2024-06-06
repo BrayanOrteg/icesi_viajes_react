@@ -17,6 +17,7 @@ import ListItemText from '@mui/material/ListItemText';
 import axios from "axios"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CardMedia, Card } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function DestinationRegistration(){
 
@@ -150,7 +151,7 @@ export function DestinationRegistration(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

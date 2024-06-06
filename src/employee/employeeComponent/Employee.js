@@ -12,6 +12,7 @@ import userPhoto from '../../Commons/exampleUser.jpg';
 import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import zIndex from '@mui/material/styles/zIndex';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function Employee(){
     
@@ -52,7 +53,7 @@ export default function Employee(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

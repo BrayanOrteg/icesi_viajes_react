@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import EmployeeService from '../../service/EmployeeService';
 import moment from 'moment';
 import axios from "axios"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function EmployeeRegistration(){
 
@@ -76,7 +77,7 @@ export function EmployeeRegistration(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

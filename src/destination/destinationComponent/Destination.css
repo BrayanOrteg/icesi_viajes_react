@@ -12,7 +12,8 @@
 }
 
 
-.container-client{
+.container-destination{
+  margin-top: 10%;
   height: 80%;
   width: 100%;
   display: grid;
@@ -39,6 +40,7 @@
 }
 
 .clientInformation-client{
+  padding: 2%;
   align-self: center;
   justify-self: center ;
   width: 60%;

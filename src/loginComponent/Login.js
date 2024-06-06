@@ -9,6 +9,7 @@ export default function Login({role}) {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
 
@@ -41,6 +42,7 @@ export default function Login({role}) {
             }).catch(
             (error) => {
                 setAuthHeader(null);
+                setError(true)
             }
         );
     };
@@ -82,7 +84,7 @@ export default function Login({role}) {
                             
                                 <button type="submit">Iniciar Sesión</button>   
                             </form>
-                            {/**this.state.error && <h4 className='error-text'> ¡Usuario no registrado!</h4>*/}
+                            {error && <h4 className='error-text'> ¡Usuario o contraseña incorrectos!</h4>}
                         </div>
                     </div>
                     

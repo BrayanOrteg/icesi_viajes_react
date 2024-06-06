@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import ClientService from '../../service/ClientService';
 import { useLocation } from "react-router-dom";
 import moment from 'moment';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 export function ClientEdit(){
@@ -75,7 +76,7 @@ export function ClientEdit(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

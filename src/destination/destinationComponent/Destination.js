@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import {getUserRole} from '../../axios_helper';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function Client(){
 
@@ -79,13 +80,13 @@ export default function Client(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>
         <body className='client-html-body'>
             
-            <div className='container-client'>
+            <div className='container-destination'>
                 
                 <div className='personalInfo-client'>
 
