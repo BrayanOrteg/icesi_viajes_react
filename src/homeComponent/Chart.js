@@ -23,11 +23,14 @@ export function Chart(){
         const fetchTypes = async () => {
             try {
                 const typesData = await PlanService.getTopTypes();
-                setTypes(typesData);
-                console.log(typesData);
+                
+                 const sortedTypes = typesData.sort((a, b) => b.number - a.number);
+                
+                 const topThreeTypes = sortedTypes.slice(0, 3);
+                 
+                 setTypes(topThreeTypes);
 
-
-
+                 console.log(typesData);
 
             } catch (error) {
                 console.log(error);
