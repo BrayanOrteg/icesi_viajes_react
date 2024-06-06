@@ -41,6 +41,10 @@ class PlanService{
     getTopDestinations(){
         return request("GET","api/v1/plans/topDestinations",{}).then((response => response.data));
     }
+
+    getDetails(id){
+        return request("POST","api/v1/plans/findDetail",id).then((response => response.data));
+    }
 }
 
 

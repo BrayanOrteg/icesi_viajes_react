@@ -21,6 +21,16 @@ export default function Plan() {
   let clientObj = location.state.clientObj;
   let clientInfo = location.state.clientInfo;
   const [role, setRole] = useState(getUserRole());
+  const [details, setDetails] = useState([]);
+
+  useEffect(() => {
+    PlanService.getDetails(clientObj.id).then((response) => {
+      setDetails(response);
+      });
+    console.log(details)
+   
+}, []);
+
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -31,6 +41,7 @@ export default function Plan() {
       .catch((error) => {
         console.log(error);
       });
+      
   };
 
   const handleGoBackClick = async (e) => {

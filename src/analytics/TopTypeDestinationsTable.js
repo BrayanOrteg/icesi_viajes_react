@@ -50,8 +50,8 @@ const TopTypeDestinationsTable = ({data}) => {
               <TableHead>
                   <TableRow>
 
-                      <StyledTableCell>Nombre del Destino</StyledTableCell>
-                      <StyledTableCell>Cantidad de usos</StyledTableCell>
+                      <StyledTableCell>Nombre del Tipo</StyledTableCell>
+                      <StyledTableCell>Cantidad de ventas</StyledTableCell>
 
                   </TableRow>
               </TableHead>
