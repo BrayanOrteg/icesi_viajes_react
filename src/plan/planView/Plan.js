@@ -111,9 +111,13 @@ export default function Plan() {
             <Typography className='textCard-Attendants' style={{ fontSize: '19px', fontWeight: 'bold', fontFamily: 'Rubik' }}>
               Nombre del destino:
             </Typography>
-            <Typography className='textCard-Attendants' style={{ fontSize: '18px', fontFamily: 'Rubik' }}>
-              {clientObj.destinationName}
-            </Typography>
+
+            { 
+              details.map((detail) => (
+                <Typography className='textCard-Attendants' style={{ fontSize: '18px', fontFamily: 'Rubik' }}>
+                {detail.destination}
+                </Typography>             
+            ))}
             
             <br/>
             

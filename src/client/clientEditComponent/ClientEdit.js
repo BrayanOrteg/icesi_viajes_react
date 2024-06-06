@@ -2,7 +2,7 @@ import React from 'react';
 import './ClientEdit.css';
 import SideBar from '../../Components/SideBar';
 import TopBar from '../../Components/TopBar';
-import  {useState} from 'react';
+import  {useState, useEffect} from 'react';
 import { TextField, Container, Stack, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ClientService from '../../service/ClientService';
@@ -31,9 +31,16 @@ export function ClientEdit(){
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const regex = /[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/;
+    const [idTypes,setIdTypes] = useState([])
 
     const [url,setUrl] = useState(clientObj.image)
 
+    useEffect(() => {
+        ClientService.getIdTypes().then((response) => {
+            setIdTypes(response);
+            console.log(idTypes)
+        });  
+    }, []);
 
 
     const handleSubmit = async (event) => {
@@ -120,17 +127,23 @@ export function ClientEdit(){
                         required
                         sx={{mb: 4}}
                     />
-                    <TextField
-                        type="text"
-                        variant='outlined'
-                        color='secondary'
-                        label="Tipo de identificación"
-                        onChange={e => setIdType(e.target.value)}
-                        value={idType}
-                        fullWidth
-                        required
-                        sx={{mb: 4}}
-                    />
+                   <FormControl sx={{width:'50%'}} >
+                        <InputLabel>Tipo de identificación</InputLabel>
+                        <Select
+                            type="text"
+                            value={idType}
+                            variant='outlined'
+                            color='secondary'
+                            label="idType"
+                            onChange={e => setIdType(e.target.value)}
+                            required
+                            x={{mb: 4}}
+                        >
+                            {idTypes.map((type) => (
+                                <MenuItem value={type.id}>{type.code}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
                 </Stack>
                 <TextField
                     type="text"
