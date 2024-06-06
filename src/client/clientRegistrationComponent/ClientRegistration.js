@@ -15,7 +15,7 @@ export function ClientRegistration(){
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [id, setId] = useState('')
-    const [dateOfBirth, setDateOfBirth] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState('2024/05/12')
     const [phone, setPhone] = useState('')
     const [sex, setSex] = useState('')
     const [idType, setIdType] = useState('')

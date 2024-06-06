@@ -84,8 +84,8 @@ export function EmployeeRegistration(){
         <div className='content'>
 
         
-        <div className='formDiv'>
-            <h2>Registro de cliente</h2>
+        <div className='formDivEmployee'>
+            <h2>Registro de empleado</h2>
             <form onSubmit={handleSubmit}>
 
             <Stack spacing={2} direction="row" sx={{marginBottom: 4, alignItems:"center"}}>

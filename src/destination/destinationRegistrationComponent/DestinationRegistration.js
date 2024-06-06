@@ -160,7 +160,7 @@ export function DestinationRegistration(){
         
         <div className='formDivDestination'>
         
-            <h2>Registro del destino</h2>
+            <h2>Edición del destino</h2>
             <form onSubmit={handleSubmit}>
 
             <Stack spacing={2} direction="row" sx={{marginBottom: 4, alignItems:"center"}}>
@@ -277,6 +277,7 @@ export function DestinationRegistration(){
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
+          required
         >
           {types.map((type) => (
             <MenuItem key={type.name} value={type.name}>

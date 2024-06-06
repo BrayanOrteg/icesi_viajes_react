@@ -66,7 +66,7 @@ export function EmployeeEdit(){
 
         
         <div className='formDiv'>
-            <h2>Registro de cliente</h2>
+            <h2>Edición de empleado</h2>
             <form onSubmit={handleSubmit}>
                 <TextField
                     type="text"
