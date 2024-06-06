@@ -102,16 +102,6 @@ export default function Employee(){
                  </div>
 
 
-                <div className='preferenceInfo-client'>
-
-                    <h2 className='tittleClientInfo-client'>Información de ventas</h2>
-                    <div className='clientPreferences-client'>
-                        
-                        <p>EMPTY</p>
-                    </div>
-
-                </div>
-
             </div>
 
 

@@ -119,17 +119,6 @@ export default function Client(){
 
                  </div>
 
-
-                <div className='preferenceInfo-client'>
-
-                    <h2 className='tittleClientInfo-client'>Preferencias</h2>
-                    <div className='clientPreferences-client'>
-                        
-                        <p>EMPTY</p>
-                    </div>
-
-                </div>
-
             </div>
 
 
