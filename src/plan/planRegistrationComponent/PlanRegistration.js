@@ -97,9 +97,12 @@ export function PlanRegistration(){
     };
     
     const handleRemoveFields = (index) => {
-    const values = [...inputFields];
-    values.splice(index, 1);
-    setInputFields(values);
+
+        if(inputFields.length>1){
+            const values = [...inputFields];
+            values.splice(index, 1);
+            setInputFields(values);
+        }
     };
 
     const addOneDay = (dateString) => {
