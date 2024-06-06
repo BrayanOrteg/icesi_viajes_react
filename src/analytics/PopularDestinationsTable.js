@@ -28,7 +28,7 @@ const PopularDestinationsTable = ({data}) => {
 
       const worksheet = XLSX.utils.json_to_sheet(exportData);
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Destinos populares');
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Destinos populares');  
       const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
       const dataBlob = new Blob([excelBuffer], { type: 'application/octet-stream' });
       saveAs(dataBlob, 'Destinos_populares.xlsx');

@@ -84,7 +84,7 @@ export default function Client(){
     };
 
     return (
-        <div className='container'>
+        <div className='container-destinationBody' >
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
@@ -92,11 +92,11 @@ export default function Client(){
             </button>
         </TopBar>
         <SideBar/>
-        <div className='content'>
+        <div className='content' style={{height: 'calc(100vh - 60px)'}}>
             
             <div className='container-destination'>
                 
-                <div className='personalInfo-client'>
+                <div className='personalInfo-client' style={{top: 0}}>
 
                     <h2 className='tittleClientInfo-client'>Información del destino</h2>
 

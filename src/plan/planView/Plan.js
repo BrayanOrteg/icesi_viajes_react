@@ -119,14 +119,6 @@ export default function Plan() {
                 </Typography>             
             ))}
             
-            <br/>
-            
-            <Typography className='textCard-Attendants' style={{ fontSize: '19px', fontWeight: 'bold', fontFamily: 'Rubik' }}>
-              Código del destino:
-            </Typography>
-            <Typography className='textCard-Attendants' style={{ fontSize: '18px', fontFamily: 'Rubik' }}>
-              {clientObj.destinationCode}
-            </Typography>
           </CardContent>
         </Card>
 

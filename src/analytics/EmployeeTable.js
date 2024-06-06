@@ -7,6 +7,7 @@ import ClientService from '../service/ClientService';
 import UserService from '../service/UserService';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import PlanService from '../service/PlanService';
 
 const EmployeeTable = ({data}) => {
 
@@ -25,11 +26,13 @@ const EmployeeTable = ({data}) => {
       
       const [clientInfo, setClientInfo] = useState({});
       const [userInfo, setUserInfo] = useState({})
+      const [destinationInfo, setDestinationInfo] = useState({})
 
       useEffect(() => {
         const fetchInfo = async () => {
             const clientData = {};
             const userData = {};
+            const destinationData = {};
             try {
 
                 /*REQUEST FOR USER INFO*/
@@ -42,6 +45,19 @@ const EmployeeTable = ({data}) => {
               );
               await Promise.all(userPromises);
               setUserInfo(userData);
+
+              
+                /*REQUEST FOR DESTINATION INFO*/
+                const destinationPromises = data.map(content => 
+                    PlanService.getDetails(content.id).then(destination => {
+                        destinationData[content.id] = destination;
+                    }).catch(error => {
+                        console.error(`Error fetching destination info in plan with ID ${content.id}:`, error);
+                    })
+                    
+                );
+                await Promise.all(destinationPromises);
+                setDestinationInfo(destinationData);
 
 
                 /*REQUEST FOR CLIENT INFO*/
@@ -66,15 +82,21 @@ const EmployeeTable = ({data}) => {
         }
     }, [data]);
 
+
+    console.log(destinationInfo)
+
     const exportToExcel = () => {
-      const exportData = data.map(content => ({
+      const exportData = data.map(content => {
+        const destinations = destinationInfo[content.id]?.map(dest => dest.destination).join(', ') || 'Cargando...';
+        return{
           Vendedor: userInfo[content.user]?.name || 'Cargando...',
           "Nombre del plan": content.name,
-          "Nombre del destino": content.destinationName,
+          "Nombre del destino": destinations,
           Código: content.code,
           Costo: content.totalCost,
           Cliente: clientInfo[content.client]?.name || 'Cargando...'
-      }));
+        };
+      });
 
       const worksheet = XLSX.utils.json_to_sheet(exportData);
       const workbook = XLSX.utils.book_new();
@@ -111,7 +133,7 @@ const EmployeeTable = ({data}) => {
                       <TableRow key={content.code}>
                           <StyledTableCell>{userInfo[content.user]?.name || 'Cargando...'}</StyledTableCell>
                           <StyledTableCell>{content.name}</StyledTableCell>
-                          <StyledTableCell>{content.destinationName}</StyledTableCell>
+                          <StyledTableCell>{destinationInfo[content.id]?.map(dest => dest.destination).join(', ') || 'Cargando...'}</StyledTableCell>
                           <StyledTableCell>{content.code}</StyledTableCell>
                           <StyledTableCell>{content.totalCost}</StyledTableCell>
                           <StyledTableCell>{clientInfo[content.client]?.name || 'Cargando...'}</StyledTableCell>
