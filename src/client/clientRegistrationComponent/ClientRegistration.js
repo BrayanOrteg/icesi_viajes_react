@@ -8,6 +8,7 @@ import ClientService from '../../service/ClientService';
 import moment from 'moment';
 import  {useState, useEffect} from 'react';
 import axios from "axios"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function ClientRegistration(){
 
@@ -95,7 +96,7 @@ export function ClientRegistration(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

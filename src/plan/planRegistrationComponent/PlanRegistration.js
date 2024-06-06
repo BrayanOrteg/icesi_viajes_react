@@ -17,6 +17,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { request, getUserId} from '../../axios_helper';
 import Autocomplete from '@mui/material/Autocomplete';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 
@@ -212,7 +213,7 @@ export function PlanRegistration(){
     };
 
     const handleGoBackClick = async(e) => {
-        navigate(-1)
+        navigate("/plans")
     };
 
 
@@ -223,7 +224,7 @@ export function PlanRegistration(){
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
-                Regresar
+            < ArrowBackIcon/>
             </button>
         </TopBar>
         <SideBar/>

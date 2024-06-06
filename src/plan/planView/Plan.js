@@ -13,7 +13,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import {getUserRole} from '../../axios_helper';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function Plan() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export default function Plan() {
       <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
       <TopBar>
         <button style={{ alignSelf: 'flex-start', justifySelf: 'start' }} onClick={handleGoBackClick}>
-          Regresar
+        < ArrowBackIcon/>
         </button>
       </TopBar>
       <SideBar />
