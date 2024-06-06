@@ -13,6 +13,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import EmployeeTable from './EmployeeTable';
+import TopTypeDestinationsTable from './TopTypeDestinationsTable';
+
 
 
 
@@ -20,6 +22,7 @@ export default function Analytics() {
   const navigate = useNavigate();
 
   const [planInfo, setPlanInfo] = useState([]);
+  const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -30,6 +33,19 @@ export default function Analytics() {
         console.error('Error fetching plans:', error);
       }
     };
+
+    const fetchTypes = async () => {
+      try {
+          const destinationsData = await PlanService.getTopDestinations();
+          setDestinations(destinationsData);
+          console.log(destinationsData);
+
+      } catch (error) {
+          console.log(error);
+      }
+  };
+
+  fetchTypes();
 
     fetchPlans();
   }, []); 
@@ -50,13 +66,25 @@ export default function Analytics() {
 
       <div className='content'>
 
-        <div style={{ width: '60%', paddingLeft: '2px', alignItems: 'start', justifyContent: 'flex-start', display: 'flex' }}>
+        <div style={{ width: '60%',zIndex: '2', paddingLeft: '2px', alignItems: 'start', justifyContent: 'flex-start', display: 'flex' }}>
           <h2 className='tittle-plan'>Reportes</h2>
         </div>
 
         <div style={{width: '60%'}}> 
         <EmployeeTable data={planInfo} />
         </div>
+
+
+        
+        <div style={{ width: '60%',zIndex: '2', paddingLeft: '2px', alignItems: 'start', justifyContent: 'flex-start', display: 'flex' }}>
+          <h2 className='tittle-plan'>Tipos de destino populares</h2>
+        </div>
+
+
+        <div style={{width: '60%'}}> 
+        <TopTypeDestinationsTable data={destinations} />
+        </div>
+
         
         
 
