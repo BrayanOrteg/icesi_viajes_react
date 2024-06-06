@@ -51,7 +51,7 @@ export default function Analytics() {
       <div className='content'>
 
         <div style={{ width: '60%', paddingLeft: '2px', alignItems: 'start', justifyContent: 'flex-start', display: 'flex' }}>
-          <h2 className='tittle-plan'>Analíticas</h2>
+          <h2 className='tittle-plan'>Reportes</h2>
         </div>
 
         <div style={{width: '60%'}}> 
