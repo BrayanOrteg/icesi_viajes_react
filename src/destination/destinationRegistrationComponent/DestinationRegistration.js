@@ -277,6 +277,7 @@ export function DestinationRegistration(){
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
+          required
         >
           {types.map((type) => (
             <MenuItem key={type.name} value={type.name}>

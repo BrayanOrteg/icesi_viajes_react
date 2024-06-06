@@ -21,6 +21,10 @@ class DestinatioService{
     getDestinationTypes(){
         return request("GET", "api/v1/destinations/types",{}).then((response => response.data));
     }
+
+    getTypes(id){
+        return request("POST", "api/v1/destinations/getTypes",id).then((response => response.data));
+    }
 }
 
 export default new DestinatioService();

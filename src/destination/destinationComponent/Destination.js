@@ -20,6 +20,7 @@ export default function Client(){
     const [airCheck, setAirCheck] = useState(false);
     const [landCheck, setLandCheck] = useState(false);
     const [role, setRole] = useState(getUserRole());
+    const [types, setTypes] = useState([]);
     
     const navigate = useNavigate();
 
@@ -41,6 +42,13 @@ export default function Client(){
 
             setLandCheck(true)
         } 
+
+        console.log(clientObj.id)
+
+        DestinationService.getTypes(clientObj.id).then((response) => {
+            setTypes(response);
+          });
+        console.log(types)
        
     }, []);
 
@@ -76,7 +84,7 @@ export default function Client(){
     };
 
     return (
-        <html className='client-html-body'>
+        <div className='container'>
         <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'></link>
         <TopBar>
             <button style={{alignSelf: 'flex-start', justifySelf: 'start'}} onClick={handleGoBackClick}>
@@ -84,7 +92,7 @@ export default function Client(){
             </button>
         </TopBar>
         <SideBar/>
-        <body className='client-html-body'>
+        <div className='content'>
             
             <div className='container-destination'>
                 
@@ -197,7 +205,11 @@ export default function Client(){
                     <h2 className='tittleClientInfo-client'>Tipos</h2>
                     <div className='clientPreferences-client'>
                         
-                        <p>EMPTY</p>
+                        { 
+                        types.map((type) => (
+
+                            <h3>{type.name} </h3>
+                        ))}
                     </div>
 
                 </div>
@@ -207,8 +219,8 @@ export default function Client(){
 
             <div className='circle-clients'> </div>
 
-        </body>
-        </html>
+            </div>
+        </div>
         
     );
     

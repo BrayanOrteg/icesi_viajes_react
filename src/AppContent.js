@@ -76,9 +76,9 @@ export function App() {
 
                 <Route exact path="/plan/registration" element={["ADMIN", "AGENT"].includes(role) ?  (<PlanRegistration/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/plan" element={role === "ADMIN" ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/plan"element={["ADMIN", "VIEWER", "AGENT"].includes(role) ? (<Plan/>) : (<Navigate replace to={"/"} />)}/>
 
-                <Route exact path="/analytics" element={role === "ADMIN" ? (<Analytics/>) : (<Navigate replace to={"/"} />)}/>
+                <Route exact path="/analytics"  element={["ADMIN", "VIEWER", "AGENT"].includes(role) ? (<Analytics/>) : (<Navigate replace to={"/"} />)}/>
             </Routes>
         </BrowserRouter>
         </>
